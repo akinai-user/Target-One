@@ -2,10 +2,20 @@
 const config = window.TARGET_ONE_CONFIG || {};
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('#navigation');
+function setMenuOpen(open) {
+  menuButton?.setAttribute('aria-expanded', String(open));
+  menuButton?.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+  const icon = menuButton?.querySelector('span');
+  if (icon) {
+    icon.textContent = open ? '×' : '☰';
+    icon.setAttribute('aria-hidden', 'true');
+  }
+  navigation?.classList.toggle('open', open);
+}
+setMenuOpen(false);
 menuButton?.addEventListener('click', () => {
   const open = menuButton.getAttribute('aria-expanded') !== 'true';
-  menuButton.setAttribute('aria-expanded', String(open));
-  navigation.classList.toggle('open', open);
+  setMenuOpen(open);
 });
 const navGroups = [...document.querySelectorAll('.nav-group')];
 navGroups.forEach((group) => {
@@ -28,8 +38,7 @@ document.addEventListener('click', (event) => {
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     navGroups.forEach((group) => (group.open = false));
-    navigation?.classList.remove('open');
-    menuButton?.setAttribute('aria-expanded', 'false');
+    setMenuOpen(false);
   }
 });
 const filters = [...document.querySelectorAll('[data-filter]')];
