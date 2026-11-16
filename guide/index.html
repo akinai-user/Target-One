@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>指定URLターゲティング広告とは？仕組み・メリット・注意点を解説 | Target-One</title>
+    <meta
+      name="description"
+      content="指定URLターゲティング広告とは、競合サイトなど指定したURLを訪れたユーザーに広告を配信する手法です。仕組み、リターゲティングとの違い、メリット、注意点をわかりやすく解説します。"
+    />
+    <link rel="canonical" href="https://target-one.net/guide/" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="指定URLターゲティング広告とは？仕組み・メリット・注意点を解説 | Target-One"
+    />
+    <meta
+      property="og:description"
+      content="指定URLターゲティング広告とは、競合サイトなど指定したURLを訪れたユーザーに広告を配信する手法です。仕組み、リターゲティングとの違い、メリット、注意点をわかりやすく解説します。"
+    />
+    <meta property="og:url" content="https://target-one.net/guide/" />
+    <meta property="og:site_name" content="Target-One" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:image" content="https://target-one.net/assets/images/ogp.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#102e5a" />
+    <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <script src="/assets/js/config.js" defer></script>
+    <script src="/assets/js/main.js" defer></script>
+    <script type="application/ld+json">
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "株式会社AKINAI",
+          "url": "https://target-one.net/",
+          "telephone": "050-1780-2231"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "TOP",
+              "item": "https://target-one.net/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "指定URLターゲティング広告とは",
+              "item": "https://target-one.net/guide/"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "競合に知られることはありませんか？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "ありません。Googleの仕様上、広告主側から競合サイトへの配信を検知することはできず、相手方が特定することはできない運用です。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "閲覧者の少ないページでも配信できますか？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "閲覧者が少ないと配信量が足りなくなることがあります。関連する比較サイトやメディアも組み合わせて指定するのがおすすめです。"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "どんな業種に向いていますか？",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "近くに競合が多い地域密着型のビジネスや、比較検討の期間が長い商材で特に効果を発揮します。"
+              }
+            }
+          ]
+        }
+      ]
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">本文へ移動</a>
+    <div class="topline">比較の瞬間に、選ばれる理由を。</div>
+    <header class="header">
+      <div class="header-inner">
+        <a class="logo" href="/" aria-label="Target-One トップ"
+          ><strong>Target<span>-</span>One</strong><small>指定URLターゲティング広告</small></a
+        ><button class="menu-toggle" aria-expanded="false" aria-controls="navigation">
+          メニュー <span>☰</span>
+        </button>
+        <nav id="navigation" aria-label="メインナビゲーション">
+          <details class="nav-group">
+            <summary>サービス</summary>
+            <div class="dropdown">
+              <a class="nav-link" href="/guide/">指定URLターゲティング広告とは</a
+              ><a class="nav-link" href="/service/">サービス紹介</a
+              ><a class="nav-link" href="/features/url/">URL指定</a
+              ><a class="nav-link" href="/features/area/">エリア・属性指定</a
+              ><a class="nav-link" href="/features/delivery/">配信面（GDN・YouTube）</a
+              ><a class="nav-link" href="/features/analytics/">効果測定・レポート</a
+              ><a class="nav-link" href="/features/creative/">クリエイティブ制作</a
+              ><a class="nav-link" href="/comparison/">他の広告との違い</a
+              ><a class="nav-link" href="/comparison/listing/">リスティング広告との違い</a
+              ><a class="nav-link" href="/comparison/remarketing/">リマーケティング広告との違い</a
+              ><a class="nav-link" href="/comparison/sns/">SNS広告との違い</a
+              ><a class="nav-link" href="/how-to-choose/">競合ターゲティング広告の選び方</a>
+            </div>
+          </details>
+          <details class="nav-group">
+            <summary>活用方法・事例</summary>
+            <div class="dropdown">
+              <a class="nav-link" href="/industry/">業種別の活用方法</a
+              ><a class="nav-link" href="/industry/dental/">歯科・クリニック</a
+              ><a class="nav-link" href="/industry/gym/">ジム・フィットネス</a
+              ><a class="nav-link" href="/industry/salon/">エステ・整体</a
+              ><a class="nav-link" href="/industry/restaurant/">飲食店</a
+              ><a class="nav-link" href="/industry/real-estate/">不動産・住宅</a
+              ><a class="nav-link" href="/industry/school/">教育・スクール</a
+              ><a class="nav-link" href="/case/">導入事例</a>
+            </div>
+          </details>
+          <a class="nav-direct" href="/plan/">料金プラン</a>
+          <details class="nav-group">
+            <summary>導入・サポート</summary>
+            <div class="dropdown">
+              <a class="nav-link" href="/flow/">導入の流れ</a
+              ><a class="nav-link" href="/support/">サポート体制</a
+              ><a class="nav-link" href="/faq/">よくある質問</a>
+            </div>
+          </details>
+          <details class="nav-group">
+            <summary>お役立ち情報</summary>
+            <div class="dropdown">
+              <a class="nav-link" href="/column/">コラム</a
+              ><a class="nav-link" href="/glossary/">用語集</a
+              ><a class="nav-link" href="/data/">調査レポート</a
+              ><a class="nav-link" href="/news/">お知らせ</a>
+            </div>
+          </details>
+        </nav>
+        <div class="header-cta">
+          <a class="button outline" href="/request/">資料請求</a
+          ><a class="button orange" href="/contact/">無料相談を申し込む</a>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <section class="page-hero">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="パンくずリスト">
+            <a class="" href="/">TOP</a><span>›</span
+            ><span aria-current="page">指定URLターゲティング広告とは</span>
+          </nav>
+          <p class="eyebrow">GUIDE</p>
+          <h1>指定URLターゲティング広告とは？仕組み・メリット・注意点を解説</h1>
+          <p class="lead">
+            指定URLターゲティング広告とは、競合サイトや比較サイトなど、指定したURLを閲覧したユーザーに向けて広告を配信する手法です。自社サイトを訪れる前の「比較検討中のユーザー」にアプローチできるのが特長です。
+          </p>
+          <a class="button orange" href="/contact/">無料相談を申し込む</a
+          ><a class="button outline" href="#section-2">詳しく見る ↓</a>
+        </div>
+      </section>
+      <section class="section" id="section-1">
+        <div class="container">
+          <h2>こんなお悩みはありませんか？</h2>
+          <p class="check">✓ 広告を出しても、問い合わせにつながる人に届いている気がしない</p>
+          <p class="check">✓ 検索広告のクリック単価が年々上がっている</p>
+          <p class="check">✓ お客様が最後に競合を選んでしまう理由がわからない</p>
+        </div>
+      </section>
+      <section class="section pale" id="section-2">
+        <div class="container">
+          <h2>競合を比べている「その瞬間」に、自社を候補に入れてもらう</h2>
+          <p class="">
+            指定URLターゲティング広告は、競合のサービスページや比較サイトを見た人に、別のサイトを見ているタイミングで自社の広告を届けます。
+          </p>
+          <p class="">
+            配信先はGoogleディスプレイネットワーク（GDN）やYouTubeなど。個人を特定する情報は扱いません。
+          </p>
+        </div>
+      </section>
+      <section class="section" id="section-3">
+        <div class="container">
+          <h2>できること</h2>
+          <div class="cards cols-3">
+            <article class="card" data-category="">
+              <span class="card-index">01</span>
+              <h3>比較検討中の人に届く</h3>
+              <p>
+                競合サイトを見ている人は、すでに購入や契約を検討している段階です。購買意欲の高い層に絞って接触できます。
+              </p>
+            </article>
+            <article class="card" data-category="">
+              <span class="card-index">02</span>
+              <h3>広告費の無駄打ちが減る</h3>
+              <p>
+                興味の薄い人への配信を減らせるため、限られた予算でも効率よく見込み客に届きます。
+              </p>
+            </article>
+            <article class="card" data-category="">
+              <span class="card-index">03</span>
+              <h3>競合からの乗り換えを促せる</h3>
+              <p>
+                競合しか知らなかったユーザーに、自社という選択肢を知ってもらうきっかけをつくれます。
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section pale" id="section-4">
+        <div class="container">
+          <h2>使用イメージ</h2>
+          <p class="">配信後は、どのURLを見た人が成果につながったかを一覧で確認できます。</p>
+          <figure>
+            <img
+              src="/assets/images/M02.webp"
+              alt="製品画面のイメージ （URL別の成果（イメージ）：指標3つ＋一覧）"
+              width="1200"
+              height="675"
+              loading="lazy"
+            />
+            <figcaption>※掲載画像はイメージです。</figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="section" id="section-5">
+        <div class="container">
+          <h2>他の手段との違い</h2>
+          <div class="table-scroll" tabindex="0" role="region" aria-label="比較・詳細表">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">手法</th>
+                  <th scope="col">誰に届くか</th>
+                  <th scope="col">向いている目的</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">指定URLターゲティング</th>
+                  <td>競合サイトなど、指定したページを見た人</td>
+                  <td>比較検討中の見込み客を、競合より先に自社へ呼び込む</td>
+                </tr>
+                <tr>
+                  <th scope="row">リターゲティング広告</th>
+                  <td>自社サイトを一度訪れた人</td>
+                  <td>一度離脱した人を呼び戻す</td>
+                </tr>
+                <tr>
+                  <th scope="row">リスティング広告</th>
+                  <td>特定のキーワードで検索した人</td>
+                  <td>今まさに探している人に、検索結果で見つけてもらう</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="">詳しくは「他の広告との違い」で解説しています。</p>
+        </div>
+      </section>
+      <section class="section pale" id="section-6">
+        <div class="container">
+          <h2>活用例</h2>
+          <p class="">業種ごとに、指定するURLとエリアの組み合わせが変わります。</p>
+          <div class="cards cols-3">
+            <article class="card" data-category="">
+              <span class="card-index">01</span>
+              <h3>CASE 01［歯科・クリニック］競合医院の診療案内ページ × 半径数km</h3>
+              <p>同じ診療を探している地域の方に、自院を知ってもらう。</p>
+            </article>
+            <article class="card" data-category="">
+              <span class="card-index">02</span>
+              <h3>CASE 02［ジム・フィットネス］競合ジムの料金ページ × 店舗周辺エリア</h3>
+              <p>ジムを比べている人に、体験の前から強みを伝える。</p>
+            </article>
+            <article class="card" data-category="">
+              <span class="card-index">03</span>
+              <h3>CASE 03［飲食店］グルメサイトの店舗一覧ページ × 店舗周辺エリア</h3>
+              <p>お店を探している人に、自店を候補に入れてもらう。</p>
+            </article>
+          </div>
+          <a class="text-link" href="/industry/">業種別の活用方法を見る →</a>
+        </div>
+      </section>
+      <section class="section" id="section-7">
+        <div class="container">
+          <h2>始め方</h2>
+          <div class="cards cols-4">
+            <article class="card" data-category="">
+              <span class="card-index">01</span>
+              <h3>01　URLを指定する</h3>
+              <p>競合のサービスページや比較サイトなど、見込み客が訪れそうなページを選びます。</p>
+            </article>
+            <article class="card" data-category="">
+              <span class="card-index">02</span>
+              <h3>02　エリアを決める</h3>
+              <p>来店型なら店舗の周辺、全国対応なら営業エリアに合わせます。</p>
+            </article>
+            <article class="card" data-category="">
+              <span class="card-index">03</span>
+              <h3>03　広告を用意する</h3>
+              <p>競合と比べたときの強みが、ひと目で伝わる広告をつくります。</p>
+            </article>
+            <article class="card" data-category="">
+              <span class="card-index">04</span>
+              <h3>04　成果を見て改善する</h3>
+              <p>URLごとの成果を見て、指定するURLや広告を入れ替えます。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section pale" id="section-8">
+        <div class="container">
+          <h2>よくある質問</h2>
+          <details class="faq">
+            <summary><span>Q</span>競合に知られることはありませんか？</summary>
+            <div>
+              <b>A</b>
+              <p>
+                ありません。Googleの仕様上、広告主側から競合サイトへの配信を検知することはできず、相手方が特定することはできない運用です。
+              </p>
+            </div>
+          </details>
+          <details class="faq">
+            <summary><span>Q</span>閲覧者の少ないページでも配信できますか？</summary>
+            <div>
+              <b>A</b>
+              <p>
+                閲覧者が少ないと配信量が足りなくなることがあります。関連する比較サイトやメディアも組み合わせて指定するのがおすすめです。
+              </p>
+            </div>
+          </details>
+          <details class="faq">
+            <summary><span>Q</span>どんな業種に向いていますか？</summary>
+            <div>
+              <b>A</b>
+              <p>
+                近くに競合が多い地域密着型のビジネスや、比較検討の期間が長い商材で特に効果を発揮します。
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+      <section class="section final-cta" id="section-9">
+        <div class="container">
+          <h2>まずは、競合の状況を一緒に見てみませんか</h2>
+          <p class="">
+            無料相談では、御社の商圏と競合サイトをもとに、指定するURLの候補をお出しします。相談だけで終わっても構いません。
+          </p>
+          <a class="button orange" href="/contact/">無料相談を申し込む</a
+          ><a class="button outline" href="/request/">資料請求</a>
+        </div>
+      </section>
+      <section class="section pale">
+        <div class="container">
+          <p class="eyebrow">SERVICE</p>
+          <h2>Target-Oneでできること</h2>
+          <div class="cards">
+            <a class="card" href="/guide/"
+              ><span class="card-index">01</span>
+              <h3>指定URLターゲティング広告とは</h3>
+              <p>競合サイトの訪問者に広告を届ける仕組み</p>
+              <span class="card-arrow">詳しく見る →</span></a
+            ><a class="card" href="/service/"
+              ><span class="card-index">02</span>
+              <h3>サービス紹介</h3>
+              <p>URL指定、エリア指定、効果測定など</p>
+              <span class="card-arrow">詳しく見る →</span></a
+            ><a class="card" href="/plan/"
+              ><span class="card-index">03</span>
+              <h3>料金プラン</h3>
+              <p>月額18,000円から、事業に合うプランを。</p>
+              <span class="card-arrow">詳しく見る →</span></a
+            >
+          </div>
+        </div>
+      </section>
+      <section class="section navy final-cta">
+        <div class="container">
+          <p class="eyebrow">CONTACT</p>
+          <h2>まずは無料相談から</h2>
+          <p>
+            商圏・業種に応じた具体的なご提案をお伝えします。<br />お問い合わせには24時間以内に対応します。
+          </p>
+          <div class="buttons">
+            <a class="button orange" href="/contact/">無料相談を申し込む →</a
+            ><a class="button outline" href="/request/">資料請求 ↓</a>
+          </div>
+          <p class="small">
+            お電話：<a href="tel:05017802231">050-1780-2231</a>　メール：<a
+              href="mailto:info@target-one.net"
+              >info@target-one.net</a
+            >
+          </p>
+        </div>
+      </section>
+      <div class="container company-link">
+        <h2>Target-Oneを運営する会社について</h2>
+        <a class="text-link" href="/company/">運営会社を見る →</a>
+      </div>
+    </main>
+    <footer>
+      <div class="container footer-grid">
+        <div>
+          <a class="logo" href="/" aria-label="Target-One トップ"
+            ><strong>Target<span>-</span>One</strong><small>指定URLターゲティング広告</small></a
+          >
+          <p>比較の瞬間に、<br />選ばれる理由を。</p>
+          <p class="small">
+            Target-Oneは、株式会社AKINAIの<br />プロジェクト「ヨコドリ」が提供するサービスです。
+          </p>
+        </div>
+        <div>
+          <h2>サービス</h2>
+          <a class="footer-link" href="/guide/">指定URLターゲティング広告とは</a
+          ><a class="footer-link" href="/service/">サービス紹介</a
+          ><a class="footer-link" href="/features/url/">URL指定</a
+          ><a class="footer-link" href="/features/area/">エリア・属性指定</a
+          ><a class="footer-link" href="/features/delivery/">配信面（GDN・YouTube）</a
+          ><a class="footer-link" href="/features/analytics/">効果測定・レポート</a
+          ><a class="footer-link" href="/features/creative/">クリエイティブ制作</a
+          ><a class="footer-link" href="/comparison/">他の広告との違い</a
+          ><a class="footer-link" href="/comparison/listing/">リスティング広告との違い</a
+          ><a class="footer-link" href="/comparison/remarketing/">リマーケティング広告との違い</a
+          ><a class="footer-link" href="/comparison/sns/">SNS広告との違い</a
+          ><a class="footer-link" href="/how-to-choose/">競合ターゲティング広告の選び方</a>
+        </div>
+        <div>
+          <h2>活用方法・事例</h2>
+          <a class="footer-link" href="/industry/">業種別の活用方法</a
+          ><a class="footer-link" href="/industry/dental/">歯科・クリニック</a
+          ><a class="footer-link" href="/industry/gym/">ジム・フィットネス</a
+          ><a class="footer-link" href="/industry/salon/">エステ・整体</a
+          ><a class="footer-link" href="/industry/restaurant/">飲食店</a
+          ><a class="footer-link" href="/industry/real-estate/">不動産・住宅</a
+          ><a class="footer-link" href="/industry/school/">教育・スクール</a
+          ><a class="footer-link" href="/case/">導入事例</a>
+        </div>
+        <div>
+          <h2>料金・導入・サポート</h2>
+          <a class="footer-link" href="/plan/">料金プラン</a
+          ><a class="footer-link" href="/flow/">導入の流れ</a
+          ><a class="footer-link" href="/support/">サポート体制</a
+          ><a class="footer-link" href="/faq/">よくある質問</a>
+        </div>
+        <div>
+          <h2>お役立ち情報</h2>
+          <a class="footer-link" href="/column/">コラム</a
+          ><a class="footer-link" href="/glossary/">用語集</a
+          ><a class="footer-link" href="/data/">調査レポート</a
+          ><a class="footer-link" href="/news/">お知らせ</a>
+        </div>
+        <div>
+          <h2>お問い合わせ・会社情報</h2>
+          <a class="footer-link" href="/request/">資料請求</a
+          ><a class="footer-link" href="/contact/">無料相談・お問い合わせ</a
+          ><a class="footer-link" href="/company/">運営会社</a
+          ><a class="footer-link" href="/yokodori/">ヨコドリについて</a
+          ><a class="footer-link" href="/privacy/">プライバシーポリシー</a
+          ><a class="footer-link" href="/terms/">利用規約</a
+          ><a class="footer-link" href="/tokushoho/">特定商取引法に基づく表記</a>
+        </div>
+      </div>
+      <div class="container copyright">© 2026 AKINAI Inc. All Rights Reserved.</div>
+    </footer>
+    <div class="mobile-cta">
+      <a class="button outline" href="/request/">資料請求</a
+      ><a class="button orange" href="/contact/">無料相談を申し込む</a>
+    </div>
+    <dialog id="confirm-dialog">
+      <div class="dialog-inner">
+        <button class="dialog-close" aria-label="閉じる">×</button>
+        <p class="eyebrow">CONFIRMATION</p>
+        <h2>入力内容の確認</h2>
+        <p>内容をご確認のうえ、送信してください。</p>
+        <dl id="confirm-values"></dl>
+        <p class="dialog-error" role="alert"></p>
+        <div class="buttons">
+          <button class="button outline edit-form">入力内容を修正</button
+          ><button class="button orange send-form">この内容で送信する →</button>
+        </div>
+      </div>
+    </dialog>
+  </body>
+</html>

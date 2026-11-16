@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /contact/thanks/
+Disallow: /request/thanks/
+Sitemap: https://target-one.net/sitemap.xml

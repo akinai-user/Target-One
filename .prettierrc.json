@@ -1,0 +1,26 @@
+{
+  "plugins": ["@prettier/plugin-php", "@prettier/plugin-xml"],
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": "*.php",
+      "options": {
+        "tabWidth": 4,
+        "phpVersion": "8.0"
+      }
+    },
+    {
+      "files": ["*.xml", "*.svg"],
+      "options": {
+        "parser": "xml",
+        "xmlWhitespaceSensitivity": "ignore"
+      }
+    }
+  ]
+}
