@@ -9,7 +9,9 @@ FONT_HEAD = '''<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400..900&amp;display=swap">
 <link rel="stylesheet" href="/assets/css/top.css">
-<link rel="stylesheet" href="/assets/css/pages.css">'''
+<link rel="stylesheet" href="/assets/css/pages.css">
+<link rel="stylesheet" href="/assets/css/top-motion.css">
+<script src="/assets/js/top-motion.js" defer></script>'''
 
 
 class PageDesign:
