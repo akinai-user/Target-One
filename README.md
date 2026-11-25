@@ -3,9 +3,9 @@
 ## GitHub Pages公開
 
 - 公開URL：https://akinai-user.github.io/Target-One/
-- `develop` へのプッシュで `.github/workflows/pages.yml` が現在の全59ページを自動公開します。
+- `main` へのプッシュで `.github/workflows/pages.yml` が現在の全59ページを自動公開します。
 - GitHubのリポジトリ設定で、PagesのSourceは「GitHub Actions」を使用します。
-- `main` は従来の先方確認用ブランチです。Pagesの公開元は `develop` です。
+- `develop` で修正・確認し、`main` へのマージ後にGitHub Pagesへ公開します。
 - `Target-One-preview` への配置・同期は行いません。
 
 `python3 scripts/build_github_pages.py --output dist` で公開ファイルを書き出せます。
@@ -77,7 +77,7 @@ python3 scripts/check.py
 
 `content/pages.json` を編集すると、title・description・h1・本文・表・FAQを再生成できます。コラム／事例を日常的に管理画面から更新する場合は、WordPress版を選んでください。
 
-共通スタイルは `assets/css/style.css`、共通操作は `assets/js/main.js` です。ソース編集後の再梱包は `python3 scripts/package_delivery.py` で行えます。静的HTMLに直接加えた修正は、再生成時に上書きされるため、継続編集はJSONと生成スクリプト側へ反映してください。
+共通スタイルは `assets/css/style.css`、共通操作は `assets/js/main.js` です。 下層ページの共通デザインは `assets/css/pages.css`、共通アニメーションは `assets/css/top-motion.css` と `assets/js/top-motion.js` です。`/guide/` の本文は `content/guide-main.html`、専用スタイルは `assets/css/guide.css` で管理し、生成時にも維持します。ボタン・リンク・濃紺の背景はTOPの共通クラスを使用します。ソース編集後の再梱包は `python3 scripts/package_delivery.py` で行えます。静的HTMLに直接加えた修正は、再生成時に上書きされるため、継続編集はJSONと生成スクリプト側へ反映してください。
 
 ## 確認済み・未確認事項
 

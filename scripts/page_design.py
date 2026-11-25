@@ -52,6 +52,44 @@ class PageDesign:
         return next((section['layout'] for section in self.layouts.get(str(page['number']), []) if section['name'] == name), '')
 
     @staticmethod
+    def unify_body(source):
+        """Use TOP components without changing content, links or page structure."""
+        def shared_classes(match):
+            classes = match[1].split()
+            if 'button' in classes:
+                variant = 'top-button-orange' if 'orange' in classes else 'top-button-outline'
+                classes = [c for c in classes if c not in ('button', 'orange', 'outline')]
+                classes += ['top-button', variant]
+            if 'text-link' in classes:
+                classes = ['top-link' if c == 'text-link' else c for c in classes]
+            if 'card-arrow' in classes and 'top-link' not in classes:
+                classes.append('top-link')
+            if ('solution-section' in classes or ('final-cta' in classes and 'navy' in classes)) and 'top-dark' not in classes:
+                classes.append('top-dark')
+            return 'class="' + ' '.join(classes) + '"'
+
+        source = re.sub(r'class="([^"]*)"', shared_classes, source)
+
+        def card_heading(match):
+            card = match[0]
+            if 'card-heading' in card or 'class="card-icon"' not in card:
+                return card
+            return re.sub(
+                r'(<img\b[^>]*class="card-icon"[^>]*>\s*(?:<span class="card-index">.*?</span>\s*)?<h3>.*?</h3>)',
+                r'<div class="card-heading">\1</div>', card, count=1, flags=re.S,
+            )
+
+        source = re.sub(r'<(a|article)\b[^>]*class="card"[^>]*>.*?</\1\s*>', card_heading, source, flags=re.S)
+
+        def consultation_heading(match):
+            section = match[0]
+            return re.sub(r'(<h2>)まずは無料相談から(</h2>)',
+                          r'\1まずは<span class="cta-accent">無料相談</span>から\2', section)
+
+        return re.sub(r'<section\b[^>]*class="section navy final-cta top-dark"[^>]*>.*?</section>',
+                      consultation_heading, source, flags=re.S)
+
+    @staticmethod
     def kind(page):
         number = page['number']
         if number in (13, 28):

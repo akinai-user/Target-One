@@ -89,6 +89,25 @@
 .top-motion-visible .top-hero-visual img {
   animation-play-state: running;
 }
+.page-guide .guide-preview img {
+  animation: top-float 7s ease-in-out infinite paused;
+}
+.page-guide .guide-preview.top-motion-visible img {
+  animation-play-state: running;
+}
+.sub-page .page-hero-visual > img:is([src*='hero-laptop'], [src*='solution-'], [src*='method-']) {
+  animation: top-float 7s ease-in-out infinite paused;
+}
+.sub-page .top-motion-visible .page-hero-visual > img {
+  animation-play-state: running;
+}
+.page-guide .guide-service-card:focus-visible {
+  outline: 3px solid #329dff;
+  outline-offset: 5px;
+}
+.page-guide .guide-service-card:focus-visible .top-link::after {
+  transform: scaleX(1);
+}
 .top-results::before,
 .top-results::after {
   animation: top-orbit 50s linear infinite paused;
@@ -326,6 +345,9 @@
 .sub-page .text-link:focus-visible::after {
   transform: scaleX(1);
 }
+.sub-page a.card:focus-visible .card-arrow::after {
+  transform: scaleX(1);
+}
 @media (hover: hover) and (pointer: fine) {
   .sub-page .button:hover {
     transform: translateY(-3px);
@@ -346,6 +368,9 @@
   }
   .sub-page a.card:hover .card-arrow {
     transform: translateX(4px);
+  }
+  .sub-page a.card:hover .card-arrow::after {
+    transform: scaleX(1);
   }
 }
 .sub-page .button:active {

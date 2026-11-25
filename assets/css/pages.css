@@ -212,7 +212,7 @@
   font-size: 13px;
 }
 .sub-page .solution-section {
-  background: #03214b url('../images/top/blue-background.webp') center / 100% 100%;
+  background-color: #001b43;
   color: #fff;
   text-align: center;
 }
@@ -607,7 +607,7 @@
   min-width: 220px;
 }
 .sub-page .final-cta.navy {
-  background: #001b43 url('../images/top/blue-background.webp') center / 100% 100%;
+  background-color: #001b43;
   color: #fff;
   padding: 85px 0;
 }
@@ -1247,5 +1247,493 @@
   }
   .sub-page .price-hero-card > p {
     font-size: 48px;
+  }
+}
+
+/* TOP / guide foundations, applied to the remaining lower pages. */
+.sub-page:not(.page-guide) {
+  --page-heading: clamp(26px, 2.55vw, 34px);
+  --page-card-title: clamp(18px, 1.5vw, 20px);
+  --page-body: clamp(15px, 1.2vw, 17px);
+  --page-space: clamp(56px, 6vw, 88px);
+}
+.sub-page:not(.page-guide) main {
+  color: #080f2c;
+  font-size: var(--page-body);
+  line-height: 1.85;
+}
+.sub-page:not(.page-guide) main .container {
+  width: min(1200px, calc(100% - 80px));
+}
+.sub-page:not(.page-guide) main .container.reading,
+.sub-page:not(.page-guide) main .reading-section > .container {
+  width: min(860px, calc(100% - 80px));
+}
+.sub-page:not(.page-guide) main .section:not(.reading-section) {
+  padding-block: var(--page-space);
+}
+.sub-page:not(.page-guide) main .section:not(.reading-section) > .container > h2,
+.sub-page:not(.page-guide) main .section:not(.reading-section) > .container > h2:not(:first-child) {
+  font-size: var(--page-heading);
+  line-height: 1.45;
+  text-align: center;
+  margin-bottom: 32px;
+}
+.sub-page:not(.page-guide) .page-hero {
+  padding: 22px 0 64px;
+}
+.sub-page:not(.page-guide) .breadcrumb {
+  font-size: 13px;
+  margin-bottom: 28px;
+}
+.sub-page:not(.page-guide) .page-hero h1 {
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.5;
+  margin: 0;
+}
+.sub-page:not(.page-guide) .hero-with-media h1 {
+  font-size: clamp(26px, 2.65vw, 36px);
+}
+.sub-page:not(.page-guide) .page-hero .lead {
+  font-size: var(--page-body);
+  line-height: 1.85;
+  max-width: 900px;
+}
+.sub-page:not(.page-guide) .page-hero:not(.hero-with-media) .page-hero-copy {
+  max-width: 1000px;
+  margin-inline: auto;
+  text-align: center;
+}
+.sub-page:not(.page-guide) .page-hero:not(.hero-with-media) :is(h1, .lead) {
+  margin-inline: auto;
+}
+.sub-page:not(.page-guide) .page-hero:not(.hero-with-media) .buttons {
+  justify-content: center;
+}
+.sub-page:not(.page-guide) main .buttons {
+  gap: 20px;
+  margin-top: 32px;
+}
+.sub-page:not(.page-guide) main .top-button {
+  min-height: 58px;
+  padding: 13px 28px;
+  font-size: 17px;
+}
+.sub-page:not(.page-guide) main .top-link {
+  font-size: 16px;
+}
+.sub-page:not(.page-guide) main .cards:not(.cols-2, .cols-4, .term-cards) {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+.sub-page:not(.page-guide) main .cards {
+  gap: 22px;
+  margin-block: 32px;
+}
+.sub-page:not(.page-guide) main .card {
+  border-radius: 22px;
+  box-shadow: 0 8px 24px #1454a412;
+}
+.sub-page:not(.page-guide) main .card h3 {
+  font-size: var(--page-card-title);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+.sub-page:not(.page-guide) main .card p {
+  font-size: var(--page-body);
+  line-height: 1.85;
+}
+.sub-page:not(.page-guide) main .card > .card-icon {
+  width: 88px;
+  height: 76px;
+}
+.sub-page:not(.page-guide) main .card-arrow {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  font-size: 16px;
+  margin-top: 24px;
+}
+.sub-page:not(.page-guide) .section:has(> .container > .check) {
+  background: linear-gradient(120deg, #f0f7ff, #f8fbff);
+}
+.sub-page:not(.page-guide) .section:has(> .container > .check) .container > .check {
+  border: 1px solid #d8e8ff;
+  border-radius: 24px;
+  box-shadow: 0 12px 24px #1765c316;
+  font-size: var(--page-body);
+}
+.sub-page:not(.page-guide) main .solution-section h2 {
+  color: #ff9400;
+}
+.sub-page:not(.page-guide) main .solution-section p:not(.eyebrow) {
+  font-size: var(--page-body);
+  line-height: 1.85;
+}
+.sub-page:not(.page-guide) main .image-layout {
+  gap: 40px;
+}
+.sub-page:not(.page-guide) main .image-section-copy h2 {
+  font-size: var(--page-heading);
+  line-height: 1.45;
+  text-align: left;
+}
+.sub-page:not(.page-guide) main .table-scroll {
+  border-radius: 18px;
+  box-shadow: 0 12px 24px #164a860d;
+}
+.sub-page:not(.page-guide) main table {
+  font-size: var(--page-body);
+}
+.sub-page:not(.page-guide) main table.plan-table {
+  font-size: 14px;
+}
+.sub-page:not(.page-guide) main :is(th, td) {
+  padding: 16px 20px;
+}
+.sub-page:not(.page-guide) main thead th {
+  font-size: inherit;
+}
+.sub-page:not(.page-guide) main .faq-section > .container {
+  max-width: 960px;
+}
+.sub-page:not(.page-guide) main .faq {
+  border: 2px solid #d8e9ff;
+  border-radius: 12px;
+  background: #ebf7ff;
+  margin-bottom: 15px;
+}
+.sub-page:not(.page-guide) main .faq summary {
+  min-height: 70px;
+  font-size: var(--page-body);
+}
+.sub-page:not(.page-guide) main .faq > div {
+  font-size: var(--page-body);
+}
+.sub-page:not(.page-guide) main .wire-final-cta {
+  background:
+    linear-gradient(125deg, #eaf7ffcc, #f6fbffbb),
+    url('../images/top/light-background.webp') center / 100% 100%;
+  border: 0;
+}
+.sub-page:not(.page-guide) main .final-cta {
+  text-align: center;
+}
+.sub-page:not(.page-guide) main .final-cta .buttons {
+  justify-content: center;
+}
+.sub-page:not(.page-guide) main .final-cta .top-button {
+  min-width: 240px;
+}
+.sub-page:not(.page-guide) main .final-cta > .container > .top-button {
+  margin: 28px 8px 0;
+}
+.sub-page:not(.page-guide) main .shared-service {
+  background: #fff;
+  border: 0;
+}
+.sub-page:not(.page-guide) main .shared-service .card {
+  padding-top: 28px;
+  border: 1px solid #edf4ff;
+  background:
+    radial-gradient(ellipse at 50% -80%, #ffffff00 65%, #ffffffbb 65.2%),
+    linear-gradient(145deg, #fff 45%, #ddf0ff);
+}
+.sub-page:not(.page-guide) main .shared-service .card-index {
+  display: none;
+}
+.sub-page:not(.page-guide) main .shared-service .card-icon {
+  width: 104px;
+  height: 72px;
+}
+.sub-page:not(.page-guide) main .company-link h2,
+.sub-page:not(.page-guide) main .company-link h2:not(:first-child) {
+  font-size: 22px;
+  line-height: 1.5;
+  margin: 0;
+}
+.sub-page:not(.page-guide) main .company-link .eyebrow {
+  display: none;
+}
+.sub-page:not(.page-guide) main .company-link .top-link {
+  margin: 0;
+  flex-shrink: 0;
+}
+.sub-page:not(.page-guide) main .reading-section h2,
+.sub-page:not(.page-guide) main .reading-section h2:not(:first-child),
+.sub-page.page-legal main .reading h2,
+.sub-page.page-legal main .reading h2:not(:first-child) {
+  font-size: clamp(22px, 2vw, 28px);
+  text-align: left;
+  line-height: 1.65;
+}
+.sub-page:not(.page-guide) main .toc h2,
+.sub-page:not(.page-guide) main .toc h2:not(:first-child) {
+  font-size: 20px;
+}
+.sub-page:not(.page-guide) main .news-item,
+.sub-page:not(.page-guide) main .news-item h2,
+.sub-page:not(.page-guide) main .news-item h2:not(:first-child) {
+  font-size: var(--page-body);
+  border-radius: 0;
+  box-shadow: none;
+  text-align: left;
+  margin: 0;
+}
+.sub-page:not(.page-guide) main .contact-form {
+  background: #fff;
+  border-color: #d8e5f5;
+  border-radius: 22px;
+}
+.sub-page:not(.page-guide) main .contact-form :is(.field, legend, .choices label, .consent) {
+  font-size: 15px;
+}
+@media (min-width: 768px) and (max-width: 1099px) {
+  .sub-page:not(.page-guide) main .cards.cols-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 767px) {
+  .sub-page:not(.page-guide) main .container,
+  .sub-page:not(.page-guide) main .container.reading,
+  .sub-page:not(.page-guide) main .reading-section > .container {
+    width: calc(100% - 36px);
+  }
+  .sub-page:not(.page-guide) .page-hero {
+    padding-bottom: 48px;
+  }
+  .sub-page:not(.page-guide) .page-hero h1 {
+    font-size: clamp(26px, 6.5vw, 32px);
+  }
+  .sub-page:not(.page-guide) main .cards,
+  .sub-page:not(.page-guide) main .cards.cols-2,
+  .sub-page:not(.page-guide) main .cards.cols-4,
+  .sub-page:not(.page-guide) main .cards:not(.cols-2, .cols-4, .term-cards) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  .sub-page:not(.page-guide) main .buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .sub-page:not(.page-guide) main .top-button {
+    min-width: 0;
+    width: 100%;
+    font-size: 16px;
+  }
+  .sub-page:not(.page-guide) main .final-cta > .container > .top-button {
+    margin: 16px 0 0;
+  }
+  .sub-page:not(.page-guide) main .company-link > .container {
+    align-items: center;
+    text-align: center;
+  }
+  .sub-page:not(.page-guide) main .company-link h2 {
+    font-size: 20px;
+  }
+  .sub-page:not(.page-guide) main :is(th, td) {
+    padding: 14px 16px;
+  }
+  .sub-page:not(.page-guide) main .contact-form :is(.field, legend, .choices label, .consent) {
+    font-size: 14px;
+  }
+}
+
+/* Visual language: luminous blue, diagonal light and illustrated card headings. */
+.sub-page:not(.page-guide, .page-article, .page-legal, .page-term) .page-hero h1 {
+  color: #68e5f5;
+  background: linear-gradient(170deg, #fff 10%, #a5f0fc 42%, #18c7ed 95%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  letter-spacing: -0.025em;
+}
+.sub-page:not(.page-guide, .page-article, .page-legal, .page-term) .page-hero::after {
+  inset: -30% -10%;
+  width: auto;
+  height: auto;
+  opacity: 0.7;
+  transform: none;
+  background: linear-gradient(
+    125deg,
+    transparent 0 12%,
+    #085cf642 12.1%,
+    #00215300 16.5%,
+    #2bd5ffbb 16.6%,
+    transparent 16.8% 84%,
+    #22c9ff99 84.1%,
+    #005de944 84.3%,
+    transparent 90%
+  );
+  animation: top-light-drift 18s ease-in-out infinite alternate paused;
+}
+.sub-page:not(.page-guide) .page-hero.top-motion-visible::after {
+  animation-play-state: running;
+}
+.sub-page:not(.page-guide) .page-hero .eyebrow {
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+.sub-page:not(.page-guide) main .section.pale:not(.reading-section, .shared-service) {
+  background:
+    linear-gradient(125deg, #f4f9ffd9, #eff7ffc9),
+    url('../images/top/light-background.webp') center / 100% 100%;
+}
+.sub-page:not(.page-guide)
+  main
+  .section:not(.reading-section, .solution-section, .final-cta)
+  > .container
+  > h2::after {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 3px;
+  margin: 16px auto 0;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #0750ff, #19d7ef);
+}
+.sub-page:not(.page-guide)
+  main
+  .cards:not(.term-cards, .step-cards)
+  > .card:not(:has(.card-photo)) {
+  background:
+    linear-gradient(135deg, #ffffffea 62%, #e3f3ffb3),
+    url('../images/top/light-background.webp') center / cover;
+  border: 1px solid #daeaff;
+}
+.sub-page:not(.page-guide) main .card-heading {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  min-height: 88px;
+  margin-bottom: 22px;
+}
+.sub-page:not(.page-guide) main .card-heading .card-icon {
+  display: block;
+  width: 80px;
+  height: 76px;
+  object-fit: contain;
+  margin: 0;
+  grid-column: 1;
+  grid-row: 1;
+}
+.sub-page:not(.page-guide) main .card-heading .card-index {
+  display: none;
+}
+.sub-page:not(.page-guide) main .card-heading h3 {
+  margin: 0;
+  padding-left: 18px;
+  border-left: 2px solid #329aff;
+}
+.sub-page:not(.page-guide) main .step-cards .card {
+  position: relative;
+  background:
+    linear-gradient(
+      135deg,
+      transparent 82%,
+      #0875fa 82.2%,
+      #023578 88%,
+      #0066ef 88.2%,
+      transparent 93%
+    ),
+    linear-gradient(130deg, #074d9e, #001d44 58%, #003b80);
+  border: 1px solid #0c4d9a;
+  padding-top: 28px;
+}
+.sub-page:not(.page-guide) main .step-cards .card-heading {
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 12px;
+  padding-top: 26px;
+}
+.sub-page:not(.page-guide) main .step-cards .card-heading .card-icon {
+  width: 64px;
+  height: 64px;
+}
+.sub-page:not(.page-guide) main .step-cards .card-heading h3 {
+  padding-left: 12px;
+  border-color: #a3e9ff;
+  font-size: 18px;
+}
+.sub-page:not(.page-guide) main .step-cards .card-heading .card-index {
+  display: block;
+  position: absolute;
+  top: 17px;
+  left: 28px;
+  right: auto;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #77e9ff;
+}
+.sub-page:not(.page-guide)
+  main
+  .cards:not(.term-cards, .step-cards)
+  > .card:not(:has(img))
+  > .card-index {
+  display: inline-grid;
+  place-items: center;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 8px;
+  margin-bottom: 18px;
+  border: 1px solid #90d8ff;
+  border-radius: 50%;
+  color: #0750ff;
+  background: #eaf7ff;
+  font-size: 15px;
+}
+.sub-page:not(.page-guide) main .shared-service .card-heading {
+  display: block;
+  margin-bottom: 12px;
+}
+.sub-page:not(.page-guide) main .shared-service .card-heading .card-icon {
+  width: 104px;
+  height: 72px;
+  margin-bottom: 20px;
+}
+.sub-page:not(.page-guide) main .shared-service .card-heading h3 {
+  border: 0;
+  padding: 0;
+}
+.sub-page:not(.page-guide) main .shared-service .card p {
+  min-height: 3.7em;
+}
+.sub-page:not(.page-guide) main .solution-section h2 {
+  font-style: italic;
+  text-shadow: 0 3px 5px #0005;
+}
+.sub-page:not(.page-guide) main .final-cta .cta-accent {
+  color: #ff9400;
+}
+.sub-page:not(.page-guide) main .wire-final-cta {
+  background:
+    linear-gradient(125deg, #eaf7ffb3, #f6fbff80),
+    url('../images/top/light-background.webp') center / 100% 100%;
+}
+.sub-page:not(.page-guide) main .faq-section {
+  background: #f4f8ff;
+}
+.sub-page:not(.page-guide) main .faq summary > span {
+  box-shadow: 0 2px 5px #08224930;
+}
+@media (max-width: 767px) {
+  .sub-page:not(.page-guide) main .card-heading {
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: 16px;
+  }
+  .sub-page:not(.page-guide) main .card-heading .card-icon {
+    width: 72px;
+    height: 68px;
+  }
+  .sub-page:not(.page-guide) main .shared-service .card p {
+    min-height: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sub-page:not(.page-guide) .page-hero::after {
+    animation: none;
   }
 }

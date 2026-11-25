@@ -18,7 +18,9 @@
           if (!isIntersecting) return;
           const index = groups.get(target.parentElement) || 0;
           groups.set(target.parentElement, index + 1);
-          const delay = target.matches('.top-hero-copy') ? 180 : Math.min(index * 55, 165);
+          const delay = target.matches('.top-hero-copy, .guide-hero-copy')
+            ? 180
+            : Math.min(index * 55, 165);
           target.style.setProperty('--reveal-delay', `${delay}ms`);
           target.classList.remove('top-reveal-pending');
           pending.delete(target);
@@ -54,6 +56,15 @@
             '.sub-page main .news-item',
             '.sub-page main .faq',
             '.sub-page main .image-section-media',
+            '.sub-page main .image-section-copy',
+            '.sub-page main .check',
+            '.page-guide .guide-hero-copy',
+            '.page-guide .guide-concern-grid > li',
+            '.page-guide .guide-benefit',
+            '.page-guide .guide-case',
+            '.page-guide .guide-step-grid > li',
+            '.page-guide .guide-service-card',
+            '.page-guide .guide-preview figure',
           ].join(','),
         )
         .forEach((element) => {
@@ -70,7 +81,7 @@
     });
     document
       .querySelectorAll(
-        '.top-hero, .top-dark, .top-results, .sub-page .page-hero, .sub-page .final-cta.navy',
+        '.top-hero, .top-dark, .top-results, .sub-page .page-hero, .sub-page .final-cta.navy, .page-guide .guide-preview',
       )
       .forEach((section) => atmosphere.observe(section));
 

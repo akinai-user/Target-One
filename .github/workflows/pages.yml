@@ -2,7 +2,7 @@ name: Deploy Target-One to GitHub Pages
 
 on:
   push:
-    branches: [develop]
+    branches: [main]
 
 permissions:
   contents: read
