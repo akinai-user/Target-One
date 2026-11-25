@@ -18,26 +18,61 @@ menuButton?.addEventListener('click', () => {
   setMenuOpen(open);
 });
 const navGroups = [...document.querySelectorAll('.nav-group')];
+const navCloseTimers = new Map();
+function closeNavGroup(group, immediate = false) {
+  clearTimeout(navCloseTimers.get(group));
+  if (immediate || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    group.classList.remove('nav-closing');
+    group.open = false;
+    navCloseTimers.delete(group);
+    return;
+  }
+  group.classList.add('nav-closing');
+  navCloseTimers.set(
+    group,
+    setTimeout(() => {
+      group.open = false;
+      group.classList.remove('nav-closing');
+      navCloseTimers.delete(group);
+    }, 200),
+  );
+}
 navGroups.forEach((group) => {
   group.addEventListener('toggle', () => {
     if (group.open)
       navGroups.forEach((other) => {
-        if (group !== other) other.open = false;
+        if (group !== other) closeNavGroup(other, true);
       });
   });
   group.addEventListener('mouseenter', () => {
-    if (window.matchMedia('(min-width:1100px) and (hover:hover)').matches) group.open = true;
+    if (window.matchMedia('(min-width:1100px) and (hover:hover)').matches) {
+      clearTimeout(navCloseTimers.get(group));
+      navCloseTimers.delete(group);
+      group.classList.remove('nav-closing');
+      group.open = true;
+    }
   });
   group.addEventListener('mouseleave', () => {
-    if (window.matchMedia('(min-width:1100px) and (hover:hover)').matches) group.open = false;
+    if (
+      window.matchMedia('(min-width:1100px) and (hover:hover)').matches &&
+      !group.contains(document.activeElement)
+    )
+      closeNavGroup(group);
+  });
+  group.addEventListener('focusout', (event) => {
+    if (event.relatedTarget && !group.contains(event.relatedTarget)) closeNavGroup(group, true);
   });
 });
 document.addEventListener('click', (event) => {
-  if (!event.target.closest('.header')) navGroups.forEach((group) => (group.open = false));
+  if (!event.target.closest('.header')) navGroups.forEach((group) => closeNavGroup(group, true));
 });
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
-    navGroups.forEach((group) => (group.open = false));
+    const activeGroup = navGroups.find(
+      (group) => group.open && group.contains(document.activeElement),
+    );
+    navGroups.forEach((group) => closeNavGroup(group, true));
+    activeGroup?.querySelector('summary')?.focus();
     setMenuOpen(false);
   }
 });
