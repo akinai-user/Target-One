@@ -1,5 +1,19 @@
 # Target-One サービスサイト
 
+## GitHub Pages公開
+
+- 公開URL：https://akinai-user.github.io/Target-One/
+- `develop` へのプッシュで `.github/workflows/pages.yml` が現在の全59ページを自動公開します。
+- GitHubのリポジトリ設定で、PagesのSourceは「GitHub Actions」を使用します。
+- `main` は従来の先方確認用ブランチです。Pagesの公開元は `develop` です。
+- `Target-One-preview` への配置・同期は行いません。
+
+`python3 scripts/build_github_pages.py --output dist` で公開ファイルを書き出せます。
+`/Target-One/` に合わせて内部リンク・画像・CSS・JS・サイトマップのURLを変換します。
+公開ファイルには静的HTML・アセットのみを含め、PHP・参考資料・WordPress版・納品ZIPは含めません。
+リポジトリ自体は公開のため、これらのソースとGit履歴はGitHub上で閲覧できます。
+GitHub PagesではPHPが動かないため、問い合わせ・資料請求フォームは送信停止のままです。
+
 共有Excelの39ページをベースに作成した、HTML・CSS・JavaScript中心のサイトです。TOPはこのフォルダ直下の `index.html`、下層ページは各ディレクトリの `index.html` です。お問い合わせはA案を採用しています。
 
 事例詳細6業種・コラム詳細・用語詳細・コラムカテゴリ4ページ・サンクスページを補完し、静的版は全59ページです。ページ一覧は `PAGE-LIST.md` をご覧ください。

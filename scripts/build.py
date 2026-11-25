@@ -1,6 +1,8 @@
 from pathlib import Path
 import json,re,html,copy
+from page_design import PageDesign, FONT_HEAD
 R=Path(__file__).resolve().parent.parent
+design=PageDesign(R)
 site_config=json.loads((R/'content/site-config.json').read_text())
 pages=json.loads((R/'content/pages.json').read_text());pages=[p for p in pages if 'B案' not in p['name']]
 esc=lambda s:html.escape(str(s),quote=True)
@@ -46,11 +48,12 @@ def navgroup(label,nums):
  return '<details class="nav-group"><summary>'+label+'</summary><div class="dropdown">'+''.join(a(original[n]['name'].split('（A案')[0],original[n]['path'],'nav-link') for n in nums)+'</div></details>'
 header='<a class="skip" href="#main">本文へ移動</a><div class="topline">比較の瞬間に、選ばれる理由を。</div><header class="header"><div class="header-inner">'+logo+'<button class="menu-toggle" aria-expanded="false" aria-controls="navigation">メニュー <span>☰</span></button><nav id="navigation" aria-label="メインナビゲーション">'+navgroup('サービス',[2,3,4,5,6,7,8,9,10,11,12,13])+navgroup('活用方法・事例',[14,15,16,17,18,19,20,21])+a('料金プラン','/plan/','nav-direct')+navgroup('導入・サポート',[24,25,26])+navgroup('お役立ち情報',[27,29,31,32])+'</nav><div class="header-cta">'+a('資料請求','/request/','button outline')+a('無料相談を申し込む','/contact/','button orange')+'</div></div></header>'
 footer='<footer><div class="container footer-grid"><div>'+logo+'<p>比較の瞬間に、<br>選ばれる理由を。</p><p class="small">Target-Oneは、株式会社AKINAIの<br>プロジェクト「ヨコドリ」が提供するサービスです。</p></div>'+''.join('<div><h2>'+label+'</h2>'+''.join(a(original[n]['name'].split('（A案')[0],original[n]['path'],'footer-link') for n in nums)+'</div>' for label,nums in groups)+'</div><div class="container copyright">© 2026 AKINAI Inc. All Rights Reserved.</div></footer><div class="mobile-cta">'+a('資料請求','/request/','button outline')+a('無料相談を申し込む','/contact/','button orange')+'</div>'
+header,footer=design.chrome()
 def table(t):
  rows=[x.strip().split('｜') for x in t.split(' ／ ')];out='<div class="table-scroll" tabindex="0" role="region" aria-label="比較・詳細表"><table><thead><tr>'
  out+=''.join('<th scope="col">'+esc(c or '項目')+'</th>' for c in rows[0]);out+='</tr></thead><tbody>'
  for row in rows[1:]:out+='<tr>'+''.join(('<th scope="row">' if i==0 else '<td>')+esc(c)+('</th>' if i==0 else '</td>') for i,c in enumerate(row))+'</tr>'
- return out+'</tbody></table></div>'
+ return design.table(out+'</tbody></table></div>')
 def stats(t):
  out='<div class="stats">'
  for part in re.split('[／/]',t):
@@ -58,7 +61,7 @@ def stats(t):
   if m:out+='<div class="stat"><strong>'+esc(m[1])+'</strong><span>'+esc(m[2])+'</span></div>'
  return out+'</div><p class="note">※ワイヤーフレーム記載の参考値です。集計条件・根拠は公開前に確認予定です。</p>'
 def pic(n,alt='サービスの画面イメージ'):
- return f'<figure><img src="/assets/images/{n}.webp" alt="{esc(alt)}" width="1200" height="675" loading="lazy"><figcaption>※掲載画像はイメージです。</figcaption></figure>'
+ return design.picture(n,alt)
 def dashboard():
  return '''<div class="dashboard" aria-label="配信レポートの参考画面"><div class="dash-head"><span><i></i> 配信レポート</span><small>DEMO / イメージ</small></div><div class="dash-stats"><div><small>有効訪問数</small><b>1,284</b><em>↗ 18.2%</em></div><div><small>平均滞在時間</small><b>2:41</b><em>↗ 12.4%</em></div><div><small>予約・問い合わせ</small><b>63</b><em>↗ 24.1%</em></div></div><div class="chart"><svg viewBox="0 0 540 170" role="img" aria-label="訪問数の推移のイメージ"><defs><linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#2475f7" stop-opacity=".25"/><stop offset="1" stop-color="#2475f7" stop-opacity="0"/></linearGradient></defs><path d="M0 148L50 140L100 144L150 115L200 108L250 87L300 82L350 62L400 55L450 33L500 25L540 6V170H0Z" fill="url(#chartFill)"/><path class="chart-line" d="M0 148L50 140L100 144L150 115L200 108L250 87L300 82L350 62L400 55L450 33L500 25L540 6" fill="none" stroke="#2676f8" stroke-width="3"/></svg><div><span>配信開始</span><span>現在</span></div></div><div class="dash-row"><span>競合A 料金ページ</span><b>CVR 4.2%</b></div><div class="dash-row"><span>比較サイト B</span><b>CVR 3.1%</b></div><div class="dash-row"><span>口コミサイト C</span><b>CVR 2.6%</b></div></div>'''
 def field(label,name,typ='text',required=True,wide=False):
@@ -102,14 +105,16 @@ def cards(items,p):
   if desc:out+='<p>'+esc(desc.replace(' ／ 活用方法を見る →','').replace(' ／ 詳しく見る →',''))+'</p>'
   if islink:out+='<span class="card-arrow">詳しく見る <b>↗</b></span>'
   out+=f'</{tag}>'
- return out+'</div>'
+ return design.decorate_cards(out+'</div>',p)
 
 def render_section(s,p,idx):
  name=s['name'];items=s['items'];p['_section']=name
- if 'もっと見る' in name:return '<div class="container more-wrap"><button class="button outline more-button">もっと見る ↓</button><p class="note more-note" hidden>現在掲載中のコンテンツは以上です。</p></div>'
+ if p['number']!=1 and 'もっと見る' not in name and '絞り込み' not in name:
+  return design.section(s,p,idx,render_items,form)
+ if 'もっと見る' in name:return '<div class="container more-wrap" data-wire-section="'+esc(name)+'"><button class="button outline more-button">もっと見る ↓</button><p class="note more-note" hidden>現在掲載中のコンテンツは以上です。</p></div>'
  if '絞り込み' in name:
   extra=('<div class="container category-links">カテゴリページ：'+''.join(a(c,'/column/category/'+slug+'/','category-link') for c,slug in zip(['基礎知識','競合対策','Web広告運用','業種別集客'],['basics','competition','advertising','industry']))+'</div>') if p['path']=='/column/' else ''
-  return '<div class="container filters" aria-label="カテゴリで絞り込み">'+''.join('<button class="filter '+('active' if i==0 else '')+'" data-filter="'+esc(x['text'])+'" aria-pressed="'+str(i==0).lower()+'">'+esc(x['text'])+'</button>' for i,x in enumerate(items))+'</div>'+extra
+  return design.filters(s,p,'<div class="container filters" aria-label="カテゴリで絞り込み">'+''.join('<button class="filter '+('active' if i==0 else '')+'" data-filter="'+esc(x['text'])+'" aria-pressed="'+str(i==0).lower()+'">'+esc(x['text'])+'</button>' for i,x in enumerate(items))+'</div>'+extra)
  if 'フォーム' in name and p['number'] in [1,31,33,34]:
   if p['number'] in [31,33]:
    textitems=[x for x in items if x['type'] not in ['入力欄','CTA 文言'] and '□' not in x['text'] and x['text']!='必要事項を入力してください']
@@ -165,7 +170,7 @@ def subhero(p):
   parent=next((x for x in pages if x['path']=='/'+parts[0]+'/'),None)
   if parent:crumbs.append((parent['path'],parent['name']))
  bread='<nav class="breadcrumb" aria-label="パンくずリスト">'+''.join(a(n,u,'')+'<span>›</span>' for u,n in crumbs)+'<span aria-current="page">'+esc(p['name'].split('（A案')[0])+'</span></nav>'
- return '<section class="page-hero"><div class="container">'+bread+'<p class="eyebrow">'+en+'</p><h1>'+esc(p['title'])+'</h1><p class="lead">'+esc(intro)+'</p>'+''.join(a(x['text'],'#section-2' if '↓' in x['text'] else None,'button '+('orange' if '相談' in x['text'] else 'outline')) for x in items if x['type']=='CTA 文言')+'</div></section>'
+ return design.hero(p,'<section class="page-hero"><div class="container">'+bread+'<p class="eyebrow">'+en+'</p><h1>'+esc(p['title'])+'</h1><p class="lead">'+esc(intro)+'</p>'+''.join(a(x['text'],'#section-2' if '↓' in x['text'] else None,'button '+('orange' if '相談' in x['text'] else 'outline')) for x in items if x['type']=='CTA 文言')+'</div></section>')
 
 def common():
  return '<section class="section pale"><div class="container"><p class="eyebrow">SERVICE</p><h2>Target-Oneでできること</h2><div class="cards">'+''.join('<a class="card" href="'+u+'"><span class="card-index">'+n+'</span><h3>'+t+'</h3><p>'+d+'</p><span class="card-arrow">詳しく見る →</span></a>' for n,t,d,u in [('01','指定URLターゲティング広告とは','競合サイトの訪問者に広告を届ける仕組み','/guide/'),('02','サービス紹介','URL指定、エリア指定、効果測定など','/service/'),('03','料金プラン','月額18,000円から、事業に合うプランを。','/plan/')])+'</div></div></section>'
@@ -176,7 +181,10 @@ def home(p):
 
 def writepage(p,body=None):
  path=p['path'];title=p['title']+' | Target-One';url='https://target-one.net'+path
- body=body if body is not None else home(p) if path=='/' else subhero(p)+''.join(render_section(s,p,i) for i,s in enumerate(p['sections']) if i>0)+common()+(cta() if path!='/contact/' else '')+'<div class="container company-link"><h2>Target-Oneを運営する会社について</h2>'+a('運営会社を見る →','/company/')+'</div>'
+ # The completed TOP is maintained in index.html with its own stylesheet.
+ # Preserve it when regenerating the wireframe-based lower pages.
+ if path=='/' and (R/'index.html').exists() and 'class="top-page"' in (R/'index.html').read_text():return
+ body=body if body is not None else home(p) if path=='/' else subhero(p)+''.join(render_section(s,p,i) for i,s in enumerate(p['sections']) if i>0)+design.common(common())+(cta() if path!='/contact/' else '')+design.company_link()
  # Create stable heading anchors for article TOCs.
  if p['number'] in [13,28]:
   heads=[x['text'] for s in p['sections'] if s['name']=='本文' for x in s['items'] if x['type']=='見出し']
@@ -187,7 +195,8 @@ def writepage(p,body=None):
  if p['number'] in [13,28]:schemas.append({'@context':'https://schema.org','@type':'Article','headline':p['title'],'datePublished':'2026-10-14T09:00:00+09:00','dateModified':'2026-10-14T09:00:00+09:00','author':{'@type':'Organization','name':'Target-One編集部（仮）'},'publisher':{'@type':'Organization','name':'株式会社AKINAI'},'mainEntityOfPage':url})
  verification=('<meta name="google-site-verification" content="'+esc(site_config.get('searchConsoleVerification',''))+'">') if site_config.get('searchConsoleVerification') else ''
  head=f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)}</title><meta name="description" content="{esc(p['description'])}"><link rel="canonical" href="{url}"><meta property="og:type" content="{'article' if p['number'] in [13,28] else 'website'}"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(p['description'])}"><meta property="og:url" content="{url}"><meta property="og:site_name" content="Target-One"><meta property="og:locale" content="ja_JP"><meta property="og:image" content="https://target-one.net/assets/images/ogp.webp"><meta name="twitter:card" content="summary_large_image">{verification}<meta name="theme-color" content="#102e5a"><link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/css/style.css"><script src="/assets/js/config.js" defer></script><script src="/assets/js/main.js" defer></script><script type="application/ld+json">{json.dumps(schemas,ensure_ascii=False)}</script></head>'''
- doc=head+'<body>'+header+'<main id="main">'+body+'</main>'+footer+'<dialog id="confirm-dialog"><div class="dialog-inner"><button class="dialog-close" aria-label="閉じる">×</button><p class="eyebrow">CONFIRMATION</p><h2>入力内容の確認</h2><p>内容をご確認のうえ、送信してください。</p><dl id="confirm-values"></dl><p class="dialog-error" role="alert"></p><div class="buttons"><button class="button outline edit-form">入力内容を修正</button><button class="button orange send-form">この内容で送信する →</button></div></div></dialog></body></html>'
+ head=head.replace('</head>',FONT_HEAD+'</head>')
+ doc=head+'<body class="top-page sub-page page-'+design.kind(p)+'">'+header+'<main id="main">'+body+'</main>'+footer+'<dialog id="confirm-dialog"><div class="dialog-inner"><button class="dialog-close" aria-label="閉じる">×</button><p class="eyebrow">CONFIRMATION</p><h2>入力内容の確認</h2><p>内容をご確認のうえ、送信してください。</p><dl id="confirm-values"></dl><p class="dialog-error" role="alert"></p><div class="buttons"><button class="button outline edit-form">入力内容を修正</button><button class="button orange send-form">この内容で送信する →</button></div></div></dialog></body></html>'
  dest=R/path.strip('/')/'index.html' if path!='/' else R/'index.html';dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(doc)
 for p in pages:writepage(p)
 for cat,slug in zip(['基礎知識','競合対策','Web広告運用','業種別集客'],['basics','competition','advertising','industry']):

@@ -54,16 +54,31 @@
         }
       ]
     </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400..900&amp;display=swap"
+    />
+    <link rel="stylesheet" href="/assets/css/top.css" />
+    <link rel="stylesheet" href="/assets/css/pages.css" />
   </head>
-  <body>
+  <body class="top-page sub-page page-service">
     <a class="skip" href="#main">本文へ移動</a>
-    <div class="topline">比較の瞬間に、選ばれる理由を。</div>
-    <header class="header">
+    <header class="header top-header">
       <div class="header-inner">
-        <a class="logo" href="/" aria-label="Target-One トップ"
-          ><strong>Target<span>-</span>One</strong><small>指定URLターゲティング広告</small></a
-        ><button class="menu-toggle" aria-expanded="false" aria-controls="navigation">
-          メニュー <span>☰</span>
+        <a class="top-logo" href="/" aria-label="Target-One トップ"
+          ><img
+            src="/assets/images/top/logo.webp"
+            alt="Target-One 指定URLターゲティング広告"
+            width="245"
+            height="57"
+            class=""
+            fetchpriority="high"
+            decoding="async"
+        /></a>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="navigation">
+          メニュー <span aria-hidden="true">☰</span>
         </button>
         <nav id="navigation" aria-label="メインナビゲーション">
           <details class="nav-group">
@@ -116,27 +131,31 @@
           </details>
         </nav>
         <div class="header-cta">
-          <a class="button outline" href="/request/">資料請求</a
-          ><a class="button orange" href="/contact/">無料相談を申し込む</a>
+          <a class="top-button top-button-outline" href="/request/">資料請求</a
+          ><a class="top-button top-button-orange" href="/contact/">無料相談</a>
         </div>
       </div>
     </header>
     <main id="main">
-      <section class="page-hero">
+      <section class="page-hero" data-wire-section="ページタイトル（共通）">
         <div class="container">
           <nav class="breadcrumb" aria-label="パンくずリスト">
             <a class="" href="/">TOP</a><span>›</span
             ><a class="" href="/comparison/">他の広告との違い</a><span>›</span
             ><span aria-current="page">リマーケティング広告との違い</span>
           </nav>
-          <p class="eyebrow">COMPARISON</p>
-          <h1>リマーケティング広告との違い</h1>
-          <p class="lead">
-            リマーケティングは「自社サイトを訪れた人」を、Target-Oneは「競合サイトを訪れた人」を対象にします。
-          </p>
+          <div class="page-hero-grid">
+            <div class="page-hero-copy">
+              <p class="eyebrow">COMPARISON</p>
+              <h1>リマーケティング広告との違い</h1>
+              <p class="lead">
+                リマーケティングは「自社サイトを訪れた人」を、Target-Oneは「競合サイトを訪れた人」を対象にします。
+              </p>
+            </div>
+          </div>
         </div>
       </section>
-      <section class="section" id="section-1">
+      <section class="section wire-section" id="section-1" data-wire-section="問いかけ見出し＋結論">
         <div class="container">
           <h2>リマーケティング広告と、何が違うの？</h2>
           <p class="">
@@ -150,7 +169,7 @@
           </p>
         </div>
       </section>
-      <section class="section pale" id="section-2">
+      <section class="section wire-section pale" id="section-2" data-wire-section="比較表">
         <div class="container">
           <h2>比較表</h2>
           <div class="table-scroll" tabindex="0" role="region" aria-label="比較・詳細表">
@@ -159,29 +178,29 @@
                 <tr>
                   <th scope="col">項目</th>
                   <th scope="col">リマーケティング広告</th>
-                  <th scope="col">Target-One</th>
+                  <th scope="col" class="target-cell">Target-One</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row">対象</th>
                   <td>自社サイトを訪れた人</td>
-                  <td>競合サイトなど、指定したページを訪れた人</td>
+                  <td class="target-cell">競合サイトなど、指定したページを訪れた人</td>
                 </tr>
                 <tr>
                   <th scope="row">自社を知っているか</th>
                   <td>知っている</td>
-                  <td>まだ知らない人も含む</td>
+                  <td class="target-cell">まだ知らない人も含む</td>
                 </tr>
                 <tr>
                   <th scope="row">対象の人数</th>
                   <td>自社サイトの訪問者数が上限</td>
-                  <td>指定したURLの閲覧者まで広げられる</td>
+                  <td class="target-cell">指定したURLの閲覧者まで広げられる</td>
                 </tr>
                 <tr>
                   <th scope="row">主な役割</th>
                   <td>離脱した人を呼び戻す</td>
-                  <td>新しい見込み客に知ってもらう</td>
+                  <td class="target-cell">新しい見込み客に知ってもらう</td>
                 </tr>
               </tbody>
             </table>
@@ -191,10 +210,14 @@
           </p>
         </div>
       </section>
-      <section class="section" id="section-3">
+      <section
+        class="section wire-section"
+        id="section-3"
+        data-wire-section="使い分け（どちらが向いているか）"
+      >
         <div class="container">
           <h2>どちらが向いているか</h2>
-          <div class="cards cols-3">
+          <div class="cards cols-2">
             <article class="card" data-category="">
               <span class="card-index">01</span>
               <h3>リマーケティングが向いている</h3>
@@ -208,23 +231,47 @@
           </div>
         </div>
       </section>
-      <section class="section pale">
+      <section class="section pale shared-service">
         <div class="container">
           <p class="eyebrow">SERVICE</p>
           <h2>Target-Oneでできること</h2>
           <div class="cards">
             <a class="card" href="/guide/"
-              ><span class="card-index">01</span>
+              ><img
+                src="/assets/images/top/method-url.webp"
+                alt=""
+                width="112"
+                height="80"
+                class="card-icon"
+                loading="lazy"
+                decoding="async"
+              /><span class="card-index">01</span>
               <h3>指定URLターゲティング広告とは</h3>
               <p>競合サイトの訪問者に広告を届ける仕組み</p>
               <span class="card-arrow">詳しく見る →</span></a
             ><a class="card" href="/service/"
-              ><span class="card-index">02</span>
+              ><img
+                src="/assets/images/top/solution-delivery.webp"
+                alt=""
+                width="196"
+                height="98"
+                class="card-icon"
+                loading="lazy"
+                decoding="async"
+              /><span class="card-index">02</span>
               <h3>サービス紹介</h3>
               <p>URL指定、エリア指定、効果測定など</p>
               <span class="card-arrow">詳しく見る →</span></a
             ><a class="card" href="/plan/"
-              ><span class="card-index">03</span>
+              ><img
+                src="/assets/images/top/method-analytics.webp"
+                alt=""
+                width="108"
+                height="84"
+                class="card-icon"
+                loading="lazy"
+                decoding="async"
+              /><span class="card-index">03</span>
               <h3>料金プラン</h3>
               <p>月額18,000円から、事業に合うプランを。</p>
               <span class="card-arrow">詳しく見る →</span></a
@@ -251,78 +298,64 @@
           </p>
         </div>
       </section>
-      <div class="container company-link">
-        <h2>Target-Oneを運営する会社について</h2>
-        <a class="text-link" href="/company/">運営会社を見る →</a>
+      <div class="company-link">
+        <div class="container">
+          <div>
+            <p class="eyebrow">ABOUT US</p>
+            <h2>Target-Oneを運営する会社について</h2>
+          </div>
+          <a class="text-link" href="/company/">運営会社を見る <span aria-hidden="true">→</span></a>
+        </div>
       </div>
     </main>
-    <footer>
-      <div class="container footer-grid">
-        <div>
-          <a class="logo" href="/" aria-label="Target-One トップ"
-            ><strong>Target<span>-</span>One</strong><small>指定URLターゲティング広告</small></a
-          >
-          <p>比較の瞬間に、<br />選ばれる理由を。</p>
-          <p class="small">
-            Target-Oneは、株式会社AKINAIの<br />プロジェクト「ヨコドリ」が提供するサービスです。
-          </p>
+    <footer class="top-footer">
+      <div class="top-container">
+        <div class="top-footer-grid">
+          <div class="top-footer-about">
+            <a href="/" class="top-footer-name">Target-One</a>
+            <p>競合サイトを比較検討中のお客様に届く、指定URLターゲティング広告。</p>
+            <p>Target-Oneは、株式会社AKINAIのプロジェクト「ヨコドリ」が提供するサービスです。</p>
+            <a href="mailto:info@target-one.net">info@target-one.net</a
+            ><a href="tel:05017802231">050-1780-2231</a>
+          </div>
+          <div class="top-footer-group">
+            <h2>サービス</h2>
+            <a href="/guide/">指定URLターゲティング広告とは</a><a href="/service/">サービス紹介</a
+            ><a href="/comparison/">他の広告との違い</a
+            ><a href="/how-to-choose/">競合ターゲティング広告の選び方</a>
+          </div>
+          <div class="top-footer-group">
+            <h2>活用方法・事例</h2>
+            <a href="/industry/">業種別の活用方法</a><a href="/case/">導入事例</a>
+          </div>
+          <div class="top-footer-group">
+            <h2>料金プラン</h2>
+            <a href="/plan/">料金プラン</a>
+          </div>
+          <div class="top-footer-group">
+            <h2>導入・サポート</h2>
+            <a href="/flow/">導入の流れ</a><a href="/support/">サポート体制</a
+            ><a href="/faq/">よくある質問</a>
+          </div>
+          <div class="top-footer-group">
+            <h2>お役立ち情報</h2>
+            <a href="/column/">コラム</a><a href="/glossary/">用語集</a
+            ><a href="/data/">調査レポート</a><a href="/news/">お知らせ</a>
+          </div>
         </div>
-        <div>
-          <h2>サービス</h2>
-          <a class="footer-link" href="/guide/">指定URLターゲティング広告とは</a
-          ><a class="footer-link" href="/service/">サービス紹介</a
-          ><a class="footer-link" href="/features/url/">URL指定</a
-          ><a class="footer-link" href="/features/area/">エリア・属性指定</a
-          ><a class="footer-link" href="/features/delivery/">配信面（GDN・YouTube）</a
-          ><a class="footer-link" href="/features/analytics/">効果測定・レポート</a
-          ><a class="footer-link" href="/features/creative/">クリエイティブ制作</a
-          ><a class="footer-link" href="/comparison/">他の広告との違い</a
-          ><a class="footer-link" href="/comparison/listing/">リスティング広告との違い</a
-          ><a class="footer-link" href="/comparison/remarketing/">リマーケティング広告との違い</a
-          ><a class="footer-link" href="/comparison/sns/">SNS広告との違い</a
-          ><a class="footer-link" href="/how-to-choose/">競合ターゲティング広告の選び方</a>
-        </div>
-        <div>
-          <h2>活用方法・事例</h2>
-          <a class="footer-link" href="/industry/">業種別の活用方法</a
-          ><a class="footer-link" href="/industry/dental/">歯科・クリニック</a
-          ><a class="footer-link" href="/industry/gym/">ジム・フィットネス</a
-          ><a class="footer-link" href="/industry/salon/">エステ・整体</a
-          ><a class="footer-link" href="/industry/restaurant/">飲食店</a
-          ><a class="footer-link" href="/industry/real-estate/">不動産・住宅</a
-          ><a class="footer-link" href="/industry/school/">教育・スクール</a
-          ><a class="footer-link" href="/case/">導入事例</a>
-        </div>
-        <div>
-          <h2>料金・導入・サポート</h2>
-          <a class="footer-link" href="/plan/">料金プラン</a
-          ><a class="footer-link" href="/flow/">導入の流れ</a
-          ><a class="footer-link" href="/support/">サポート体制</a
-          ><a class="footer-link" href="/faq/">よくある質問</a>
-        </div>
-        <div>
-          <h2>お役立ち情報</h2>
-          <a class="footer-link" href="/column/">コラム</a
-          ><a class="footer-link" href="/glossary/">用語集</a
-          ><a class="footer-link" href="/data/">調査レポート</a
-          ><a class="footer-link" href="/news/">お知らせ</a>
-        </div>
-        <div>
-          <h2>お問い合わせ・会社情報</h2>
-          <a class="footer-link" href="/request/">資料請求</a
-          ><a class="footer-link" href="/contact/">無料相談・お問い合わせ</a
-          ><a class="footer-link" href="/company/">運営会社</a
-          ><a class="footer-link" href="/yokodori/">ヨコドリについて</a
-          ><a class="footer-link" href="/privacy/">プライバシーポリシー</a
-          ><a class="footer-link" href="/terms/">利用規約</a
-          ><a class="footer-link" href="/tokushoho/">特定商取引法に基づく表記</a>
+        <div class="top-footer-bottom">
+          <div>
+            <a href="/company/">運営会社</a><a href="/yokodori/">ヨコドリについて</a
+            ><a href="/privacy/">プライバシーポリシー</a><a href="/terms/">利用規約</a
+            ><a href="/tokushoho/">特定商取引法に基づく表記</a>
+          </div>
+          <p>© 2026 AKINAI Inc. All Rights Reserved.</p>
         </div>
       </div>
-      <div class="container copyright">© 2026 AKINAI Inc. All Rights Reserved.</div>
     </footer>
     <div class="mobile-cta">
-      <a class="button outline" href="/request/">資料請求</a
-      ><a class="button orange" href="/contact/">無料相談を申し込む</a>
+      <a class="top-button top-button-outline" href="/request/">資料請求</a
+      ><a class="top-button top-button-orange" href="/contact/">無料相談を申し込む</a>
     </div>
     <dialog id="confirm-dialog">
       <div class="dialog-inner">
