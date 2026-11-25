@@ -3,6 +3,7 @@
 import html
 import json
 import re
+import components
 
 
 FONT_HEAD = '''<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +12,7 @@ FONT_HEAD = '''<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="/assets/css/top.css">
 <link rel="stylesheet" href="/assets/css/pages.css">
 <link rel="stylesheet" href="/assets/css/top-motion.css">
+<link rel="stylesheet" href="/assets/css/sub-components.css">
 <script src="/assets/js/top-motion.js" defer></script>'''
 
 
@@ -56,6 +58,8 @@ class PageDesign:
         """Use TOP components without changing content, links or page structure."""
         def shared_classes(match):
             classes = match[1].split()
+            if 'card' in classes and 'sub-card' not in classes:
+                classes.append('sub-card')
             if 'button' in classes:
                 variant = 'top-button-orange' if 'orange' in classes else 'top-button-outline'
                 classes = [c for c in classes if c not in ('button', 'orange', 'outline')]
@@ -64,6 +68,8 @@ class PageDesign:
                 classes = ['top-link' if c == 'text-link' else c for c in classes]
             if 'card-arrow' in classes and 'top-link' not in classes:
                 classes.append('top-link')
+            if 'wire-final-cta' in classes and 'shared-invitation' not in classes:
+                classes.append('shared-invitation')
             if ('solution-section' in classes or ('final-cta' in classes and 'navy' in classes)) and 'top-dark' not in classes:
                 classes.append('top-dark')
             return 'class="' + ' '.join(classes) + '"'
@@ -79,7 +85,7 @@ class PageDesign:
                 r'<div class="card-heading">\1</div>', card, count=1, flags=re.S,
             )
 
-        source = re.sub(r'<(a|article)\b[^>]*class="card"[^>]*>.*?</\1\s*>', card_heading, source, flags=re.S)
+        source = re.sub(r'<(a|article)\b[^>]*class="card sub-card"[^>]*>.*?</\1\s*>', card_heading, source, flags=re.S)
 
         def consultation_heading(match):
             section = match[0]
@@ -113,23 +119,27 @@ class PageDesign:
 
     def hero(self, page, old_hero):
         media = None
-        if page['path'].startswith('/industry/') and self.business(page):
-            media = self.image('/assets/images/top/' + self.business(page) + '.webp', '業種別の活用イメージ', eager=True)
-        elif page['number'] in (2, 3):
-            media = self.image('/assets/images/top/hero-laptop.webp', 'Target-Oneの配信レポート画面', eager=True)
-        elif page['number'] in (4, 5, 6, 7, 8):
-            assets = {4: 'solution-url', 5: 'method-area', 6: 'solution-delivery', 7: 'method-analytics', 8: 'method-audience'}
-            media = self.image('/assets/images/top/' + assets[page['number']] + '.webp', '', eager=True)
-        elif page['number'] == 23:
+        if page['number'] == 23:
             media = '<div class="price-hero-card"><span>月額・配信費込み</span><p>18,000<span>円〜</span></p><small>税抜 ／ ライトプラン</small></div>'
         contents = re.search(r'<div class="container">(.*)</div></section>', old_hero, re.S)[1]
         breadcrumb, contents = re.match(r'(<nav class="breadcrumb".*?</nav>)(.*)', contents, re.S).groups()
-        button_at = contents.find('<a class="button')
-        if button_at >= 0:
-            contents = contents[:button_at] + '<div class="buttons">' + contents[button_at:] + '</div>'
-        extra = ' hero-with-media' if media else ''
-        visual = '<div class="page-hero-visual">' + media + '</div>' if media else ''
-        return f'<section class="page-hero{extra}" data-wire-section="ページタイトル（共通）"><div class="container">{breadcrumb}<div class="page-hero-grid"><div class="page-hero-copy">{contents}</div>{visual}</div></div></section>'
+        eyebrow = re.search(r'<p class="eyebrow">(.*?)</p>', contents, re.S)[1]
+        title = re.search(r'<h1>(.*?)</h1>', contents, re.S)[1]
+        lead = re.search(r'<p class="lead">(.*?)</p>', contents, re.S)[1]
+        actions = re.findall(r'<a\b[^>]*class="button[^>]*>.*?</a>', contents, re.S)
+        actions = '<div class="buttons">' + ''.join(actions) + '</div>' if actions else ''
+        return components.hero(breadcrumb, eyebrow, title, lead, actions, media or '')
+
+    def guide(self):
+        config = json.loads((self.root / 'content/guide-hero.json').read_text())
+        source = (self.root / 'content/guide-main.html').read_text()
+        blocks = {
+            'hero': components.hero(**config, actions=components.buttons('詳しく見る ↓', '#section-2', white=True), guide=True),
+            'services': components.services(), 'contact': components.contact(), 'company': components.company(),
+        }
+        for name, block in blocks.items():
+            source = source.replace(f'<!-- component:{name} -->', block)
+        return re.search(r'<main\b[^>]*>(.*?)</main>', source, re.S)[1]
 
     def card_image(self, page, title, index):
         section = page.get('_section', '')
@@ -277,10 +287,8 @@ class PageDesign:
 
         return re.sub(r'<tr>.*?</tr>', row_style, source, flags=re.S)
 
-    def common(self, source):
-        source = source.replace('class="section pale"', 'class="section pale shared-service"', 1)
-        icons = iter(['method-url', 'solution-delivery', 'method-analytics'])
-        return re.sub(r'<a class="card"[^>]*>', lambda match: match[0] + self.image('/assets/images/top/' + next(icons) + '.webp', '', 'card-icon'), source)
+    def common(self):
+        return components.services()
 
     def company_link(self):
-        return '<div class="company-link"><div class="container"><div><p class="eyebrow">ABOUT US</p><h2>Target-Oneを運営する会社について</h2></div><a class="text-link" href="/company/">運営会社を見る <span aria-hidden="true">→</span></a></div></div>'
+        return components.company()

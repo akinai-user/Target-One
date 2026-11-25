@@ -56,6 +56,8 @@
             '.sub-page main .news-item',
             '.sub-page main .faq',
             '.sub-page main .image-section-media',
+            '.sub-page .shared-service-card',
+            '.sub-page .shared-hero-media',
             '.sub-page main .image-section-copy',
             '.sub-page main .check',
             '.page-guide .guide-hero-copy',

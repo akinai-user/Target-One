@@ -1,5 +1,6 @@
 from pathlib import Path
 import json,re,html,copy
+import components
 from page_design import PageDesign, FONT_HEAD
 R=Path(__file__).resolve().parent.parent
 design=PageDesign(R)
@@ -172,9 +173,7 @@ def subhero(p):
  bread='<nav class="breadcrumb" aria-label="パンくずリスト">'+''.join(a(n,u,'')+'<span>›</span>' for u,n in crumbs)+'<span aria-current="page">'+esc(p['name'].split('（A案')[0])+'</span></nav>'
  return design.hero(p,'<section class="page-hero"><div class="container">'+bread+'<p class="eyebrow">'+en+'</p><h1>'+esc(p['title'])+'</h1><p class="lead">'+esc(intro)+'</p>'+''.join(a(x['text'],'#section-2' if '↓' in x['text'] else None,'button '+('orange' if '相談' in x['text'] else 'outline')) for x in items if x['type']=='CTA 文言')+'</div></section>')
 
-def common():
- return '<section class="section pale"><div class="container"><p class="eyebrow">SERVICE</p><h2>Target-Oneでできること</h2><div class="cards">'+''.join('<a class="card" href="'+u+'"><span class="card-index">'+n+'</span><h3>'+t+'</h3><p>'+d+'</p><span class="card-arrow">詳しく見る →</span></a>' for n,t,d,u in [('01','指定URLターゲティング広告とは','競合サイトの訪問者に広告を届ける仕組み','/guide/'),('02','サービス紹介','URL指定、エリア指定、効果測定など','/service/'),('03','料金プラン','月額18,000円から、事業に合うプランを。','/plan/')])+'</div></div></section>'
-def cta():return '<section class="section navy final-cta"><div class="container"><p class="eyebrow">CONTACT</p><h2>まずは無料相談から</h2><p>商圏・業種に応じた具体的なご提案をお伝えします。<br>お問い合わせには24時間以内に対応します。</p>'+buttons()+'<p class="small">お電話：<a href="tel:05017802231">050-1780-2231</a>　メール：<a href="mailto:info@target-one.net">info@target-one.net</a></p></div></section>'
+def cta():return components.contact()
 def home(p):
  hero='<section class="hero navy"><div class="container hero-layout"><div><p class="hero-tag">指定URLターゲティング広告</p><h1>“<span>競合他社を比較検討中</span>”の<br>お客様を、あなたの会社へ。</h1><p class="hero-lead">競合サイトを見ている「今まさに比較している人」だけに広告を届けます。<br>エリアや属性で絞り込み、訪問の質まで計測して改善します。</p>'+buttons()+stats('300+（アカウントの運用実績）／87%（継続率）／最短3営業日（で配信開始）')+'</div>'+dashboard()+'</div></section>'
  return hero+''.join(render_section(s,p,i) for i,s in enumerate(p['sections']) if i>0)
@@ -184,9 +183,9 @@ def writepage(p,body=None):
  # The completed TOP is maintained in index.html with its own stylesheet.
  # Preserve it when regenerating the wireframe-based lower pages.
  if path=='/' and (R/'index.html').exists() and 'class="top-page"' in (R/'index.html').read_text():return
- body=body if body is not None else home(p) if path=='/' else subhero(p)+''.join(render_section(s,p,i) for i,s in enumerate(p['sections']) if i>0)+design.common(common())+(cta() if path!='/contact/' else '')+design.company_link()
+ body=body if body is not None else home(p) if path=='/' else subhero(p)+''.join(render_section(s,p,i) for i,s in enumerate(p['sections']) if i>0)+design.common()+(cta() if path!='/contact/' else '')+design.company_link()
  if path=='/guide/':
-  body=re.search(r'<main\b[^>]*>(.*?)</main>',(R/'content/guide-main.html').read_text(),re.S)[1]
+  body=design.guide()
  else:body=design.unify_body(body)
  # Create stable heading anchors for article TOCs.
  if p['number'] in [13,28]:
@@ -199,7 +198,7 @@ def writepage(p,body=None):
  verification=('<meta name="google-site-verification" content="'+esc(site_config.get('searchConsoleVerification',''))+'">') if site_config.get('searchConsoleVerification') else ''
  head=f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)}</title><meta name="description" content="{esc(p['description'])}"><link rel="canonical" href="{url}"><meta property="og:type" content="{'article' if p['number'] in [13,28] else 'website'}"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(p['description'])}"><meta property="og:url" content="{url}"><meta property="og:site_name" content="Target-One"><meta property="og:locale" content="ja_JP"><meta property="og:image" content="https://target-one.net/assets/images/ogp.webp"><meta name="twitter:card" content="summary_large_image">{verification}<meta name="theme-color" content="#102e5a"><link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/css/style.css"><script src="/assets/js/config.js" defer></script><script src="/assets/js/main.js" defer></script><script type="application/ld+json">{json.dumps(schemas,ensure_ascii=False)}</script></head>'''
  head=head.replace('</head>',FONT_HEAD+'</head>')
- if path=='/guide/':head=head.replace('</head>','<link rel="stylesheet" href="/assets/css/guide.css"></head>')
+ if path=='/guide/':head=head.replace('<link rel="stylesheet" href="/assets/css/sub-components.css">','<link rel="stylesheet" href="/assets/css/guide.css"><link rel="stylesheet" href="/assets/css/sub-components.css">')
  doc=head+'<body class="top-page sub-page page-'+design.kind(p)+'">'+header+'<main id="main">'+body+'</main>'+footer+'<dialog id="confirm-dialog"><div class="dialog-inner"><button class="dialog-close" aria-label="閉じる">×</button><p class="eyebrow">CONFIRMATION</p><h2>入力内容の確認</h2><p>内容をご確認のうえ、送信してください。</p><dl id="confirm-values"></dl><p class="dialog-error" role="alert"></p><div class="buttons"><button class="button outline edit-form">入力内容を修正</button><button class="button orange send-form">この内容で送信する →</button></div></div></dialog></body></html>'
  if path=='/guide/':doc=doc.replace('page-service">','page-service page-guide">',1).replace('<main id="main">','<main id="main" class="guide-main">',1)
  dest=R/path.strip('/')/'index.html' if path!='/' else R/'index.html';dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(doc)

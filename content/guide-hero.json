@@ -1,0 +1,6 @@
+{
+  "breadcrumb": "<nav class=\"breadcrumb\" aria-label=\"パンくずリスト\">\n        <a href=\"/\">TOP</a><span aria-hidden=\"true\">›</span\n        ><span aria-current=\"page\">指定URLターゲティング広告とは</span>\n      </nav>",
+  "eyebrow": "GUIDE",
+  "title": "<span class=\"guide-title-line\"\n            ><span class=\"guide-title-accent\"\n              >指定URL<br class=\"guide-mobile-break\" /><span class=\"guide-phrase\"\n                >ターゲティング広告</span\n              ></span\n            ><span class=\"guide-title-question\">とは？</span></span\n          ><span class=\"guide-title-line\"\n            ><span class=\"guide-phrase\">仕組み・メリット・</span\n            ><span class=\"guide-phrase\">注意点を解説</span></span\n          >",
+  "lead": "指定URLターゲティング広告とは、競合サイトや比較サイトなど、指定したURLを閲覧したユーザーに向けて広告を配信する手法です。自社サイトを訪れる前の「比較検討中のユーザー」にアプローチできるのが特長です。"
+}

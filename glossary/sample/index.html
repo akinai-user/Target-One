@@ -63,6 +63,7 @@
     <link rel="stylesheet" href="/assets/css/top.css" />
     <link rel="stylesheet" href="/assets/css/pages.css" />
     <link rel="stylesheet" href="/assets/css/top-motion.css" />
+    <link rel="stylesheet" href="/assets/css/sub-components.css" />
     <script src="/assets/js/top-motion.js" defer></script>
   </head>
   <body class="top-page sub-page page-term">
@@ -139,20 +140,20 @@
       </div>
     </header>
     <main id="main">
-      <section class="page-hero" data-wire-section="ページタイトル（共通）">
+      <section class="shared-hero top-dark page-hero" aria-labelledby="page-title">
         <div class="container">
           <nav class="breadcrumb" aria-label="パンくずリスト">
             <a class="" href="/">TOP</a><span>›</span><a class="" href="/glossary/">用語集</a
             ><span>›</span><span aria-current="page">指定URLターゲティング</span>
           </nav>
-          <div class="page-hero-grid">
-            <div class="page-hero-copy">
-              <p class="eyebrow">GLOSSARY</p>
-              <h1>指定URLターゲティングとは</h1>
-              <p class="lead">
-                指定URLターゲティングとは、指定したURLのページを閲覧したユーザーに広告を配信する手法です。
-              </p>
-            </div>
+          <p class="shared-hero-eyebrow">GLOSSARY</p>
+          <div class="shared-hero-copy page-hero-copy">
+            <h1 id="page-title">
+              <span class="shared-hero-title-accent">指定URLターゲティングとは</span>
+            </h1>
+            <p class="shared-hero-lead">
+              指定URLターゲティングとは、指定したURLのページを閲覧したユーザーに広告を配信する手法です。
+            </p>
           </div>
         </div>
       </section>
@@ -179,12 +180,12 @@
         <div class="container">
           <h2>関連用語・関連ページ</h2>
           <div class="cards cols-3">
-            <a class="card" href="/glossary/remarketing/" data-category=""
+            <a class="card sub-card" href="/glossary/remarketing/" data-category=""
               ><span class="card-index">01</span>
               <h3>リマーケティング</h3>
               <p>自社サイトの訪問者に再度広告を配信する手法。</p>
               <span class="card-arrow top-link">詳しく見る <b>↗</b></span></a
-            ><a class="card" href="/guide/" data-category=""
+            ><a class="card sub-card" href="/guide/" data-category=""
               ><div class="card-heading">
                 <img
                   src="/assets/images/top/method-url.webp"
@@ -199,7 +200,7 @@
               </div>
               <p>仕組み・メリット・注意点を詳しく解説しています。</p>
               <span class="card-arrow top-link">詳しく見る <b>↗</b></span></a
-            ><a class="card" href="/features/url/" data-category=""
+            ><a class="card sub-card" href="/features/url/" data-category=""
               ><div class="card-heading">
                 <img
                   src="/assets/images/top/method-url.webp"
@@ -218,85 +219,76 @@
           </div>
         </div>
       </section>
-      <section class="section pale shared-service">
+      <section class="section shared-service">
         <div class="container">
           <p class="eyebrow">SERVICE</p>
           <h2>Target-Oneでできること</h2>
-          <div class="cards">
-            <a class="card" href="/guide/"
-              ><div class="card-heading">
-                <img
-                  src="/assets/images/top/method-url.webp"
-                  alt=""
-                  width="112"
-                  height="80"
-                  class="card-icon"
-                  loading="lazy"
-                  decoding="async"
-                /><span class="card-index">01</span>
-                <h3>指定URLターゲティング広告とは</h3>
-              </div>
+          <div class="shared-service-grid">
+            <a class="shared-service-card" href="/guide/"
+              ><img
+                src="/assets/images/guide/service-url.png"
+                alt=""
+                width="130"
+                height="80"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3>
+                <span class="shared-phrase">指定URL</span
+                ><span class="shared-phrase">ターゲティング広告とは</span>
+              </h3>
               <p>競合サイトの訪問者に広告を届ける仕組み</p>
-              <span class="card-arrow top-link">詳しく見る →</span></a
-            ><a class="card" href="/service/"
-              ><div class="card-heading">
-                <img
-                  src="/assets/images/top/solution-delivery.webp"
-                  alt=""
-                  width="196"
-                  height="98"
-                  class="card-icon"
-                  loading="lazy"
-                  decoding="async"
-                /><span class="card-index">02</span>
-                <h3>サービス紹介</h3>
-              </div>
+              <span class="top-link">詳しく見る <span aria-hidden="true">→</span></span></a
+            ><a class="shared-service-card" href="/service/"
+              ><img
+                src="/assets/images/guide/service-delivery.png"
+                alt=""
+                width="130"
+                height="80"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3>サービス紹介</h3>
               <p>URL指定、エリア指定、効果測定など</p>
-              <span class="card-arrow top-link">詳しく見る →</span></a
-            ><a class="card" href="/plan/"
-              ><div class="card-heading">
-                <img
-                  src="/assets/images/top/method-analytics.webp"
-                  alt=""
-                  width="108"
-                  height="84"
-                  class="card-icon"
-                  loading="lazy"
-                  decoding="async"
-                /><span class="card-index">03</span>
-                <h3>料金プラン</h3>
-              </div>
-              <p>月額18,000円から、事業に合うプランを。</p>
-              <span class="card-arrow top-link">詳しく見る →</span></a
+              <span class="top-link">詳しく見る <span aria-hidden="true">→</span></span></a
+            ><a class="shared-service-card" href="/plan/"
+              ><img
+                src="/assets/images/guide/service-plan.png"
+                alt=""
+                width="130"
+                height="80"
+                loading="lazy"
+                decoding="async"
+              />
+              <h3>料金プラン</h3>
+              <p>月額18,000円から</p>
+              <span class="top-link">詳しく見る <span aria-hidden="true">→</span></span></a
             >
           </div>
         </div>
       </section>
-      <section class="section navy final-cta top-dark">
+      <section class="section shared-contact top-dark">
         <div class="container">
-          <p class="eyebrow">CONTACT</p>
           <h2>まずは<span class="cta-accent">無料相談</span>から</h2>
           <p>
             商圏・業種に応じた具体的なご提案をお伝えします。<br />お問い合わせには24時間以内に対応します。
           </p>
           <div class="buttons">
-            <a class="top-button top-button-orange" href="/contact/">無料相談を申し込む →</a
-            ><a class="top-button top-button-outline" href="/request/">資料請求 ↓</a>
+            <a class="top-button top-button-orange" href="/contact/">無料相談を申し込む</a
+            ><a class="top-button top-button-outline" href="/request/">資料請求</a>
           </div>
-          <p class="small">
-            お電話：<a href="tel:05017802231">050-1780-2231</a>　メール：<a
-              href="mailto:info@target-one.net"
-              >info@target-one.net</a
-            >
+          <p class="shared-contact-address">
+            <span>お電話：<a href="tel:05017802231">050-1780-2231</a></span
+            >　<span>メール：<a href="mailto:info@target-one.net">info@target-one.net</a></span>
           </p>
         </div>
       </section>
-      <div class="company-link">
+      <div class="shared-company">
         <div class="container">
-          <div>
-            <p class="eyebrow">ABOUT US</p>
-            <h2>Target-Oneを運営する会社について</h2>
-          </div>
+          <h2>
+            <span class="shared-phrase">Target-Oneを運営する</span
+            ><span class="shared-phrase">会社について</span>
+          </h2>
           <a class="top-link" href="/company/">運営会社を見る <span aria-hidden="true">→</span></a>
         </div>
       </div>

@@ -85,38 +85,7 @@
   isolation: isolate;
   color: #fff;
 }
-.page-guide .guide-hero {
-  padding: 22px 0 64px;
-  min-height: 0;
-}
-.page-guide .guide-hero .container {
-  position: relative;
-}
-.page-guide .guide-hero .breadcrumb {
-  margin: 0 0 28px;
-  padding: 0;
-  color: #fff;
-  font-size: 13px;
-  gap: 14px;
-}
-.page-guide .guide-eyebrow {
-  position: static;
-  color: #02d8ee;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  margin-bottom: 20px;
-}
-.page-guide .guide-hero-copy {
-  text-align: center;
-}
-.page-guide .guide-hero h1 {
-  margin: 0;
-  font-size: clamp(26px, 3vw, 42px);
-  font-weight: 800;
-  line-height: 1.4;
-  letter-spacing: 0.01em;
-}
+
 .page-guide .guide-title-accent {
   display: inline;
   color: #58e4f8;
@@ -134,24 +103,7 @@
   font-size: 0.95em;
   margin-left: 0.15em;
 }
-.page-guide .guide-main .guide-lead {
-  margin-top: 21px !important;
-  font-size: var(--guide-body);
-  font-weight: 500;
-  line-height: 1.85;
-  max-width: 1000px;
-  margin-inline: auto;
-  text-align: center;
-}
-.page-guide .guide-hero .buttons {
-  margin-top: 36px;
-  gap: 26px;
-}
-.page-guide .guide-hero .top-button {
-  min-height: 62px;
-  min-width: 280px;
-  font-size: 17px;
-}
+
 .page-guide .guide-light {
   background: #edf6ff url('../images/top/light-background.webp') center / 100% 100% no-repeat;
 }
@@ -545,119 +497,7 @@
   font-size: var(--guide-body);
   font-weight: 500;
 }
-.page-guide .guide-main .guide-service {
-  padding: var(--guide-section-space) 0;
-}
-.page-guide .guide-service .container {
-  width: min(1200px, calc(100% - 80px));
-}
-.page-guide .guide-service .eyebrow {
-  text-align: center;
-  margin-bottom: 18px !important;
-}
-.page-guide .guide-main .guide-service h2 {
-  font-size: var(--guide-heading);
-  margin-bottom: 35px;
-}
-.page-guide .guide-service-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
-  gap: 22px;
-}
-.page-guide .guide-service-card {
-  border-radius: 22px;
-  padding: 26px;
-  background:
-    radial-gradient(ellipse at 50% -80%, #ffffff00 65%, #ffffffbb 65.2%),
-    linear-gradient(145deg, #fff 45%, #ddf0ff);
-  box-shadow: 0 5px 12px #2373ca1a;
-  transition:
-    opacity 0.7s ease var(--reveal-delay, 0ms),
-    translate 0.85s var(--motion-ease) var(--reveal-delay, 0ms),
-    transform 0.45s var(--motion-ease),
-    box-shadow 0.45s ease;
-}
-.page-guide .guide-service-card img {
-  display: block;
-  width: 104px;
-  height: 72px;
-  object-fit: contain;
-  mix-blend-mode: multiply;
-  margin-bottom: 20px;
-}
-.page-guide .guide-service-card h3 {
-  font-size: var(--guide-card-title);
-  letter-spacing: 0;
-  margin-bottom: 9px;
-  line-height: 1.6;
-  min-height: 3.2em;
-}
-.page-guide .guide-service-card p {
-  font-size: var(--guide-body);
-  white-space: normal;
-  min-height: 3.7em;
-}
-.page-guide .guide-service-card .top-link {
-  margin-top: 24px;
-  font-size: 16px;
-}
-.page-guide .guide-main .guide-contact {
-  text-align: center;
-  padding: var(--guide-section-space) 0;
-}
-.page-guide .guide-contact h2 {
-  font-size: var(--guide-heading);
-  margin-bottom: 40px;
-}
-.page-guide .guide-contact h2 span {
-  color: #ff9400;
-}
-.page-guide .guide-contact p {
-  font-size: var(--guide-body);
-  line-height: 1.65;
-}
-.page-guide .guide-contact .buttons {
-  margin-top: 34px;
-}
-.page-guide .guide-contact .top-button {
-  min-width: 240px;
-  min-height: 58px;
-}
-.page-guide .guide-contact .top-button-orange {
-  min-width: 240px;
-}
-.page-guide .guide-contact .guide-contact-address {
-  margin-top: 22px;
-  font-size: 16px;
-}
-.page-guide .guide-company {
-  padding: 36px 0;
-  background: #f4f8ff;
-}
-.page-guide .guide-company .container {
-  width: min(910px, calc(100% - 13.2%));
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-.page-guide .guide-company h2 {
-  font-size: 22px;
-  margin: 0;
-}
-.page-guide .guide-company .top-link {
-  font-size: 16px;
-  white-space: nowrap;
-}
-@media (hover: hover) and (pointer: fine) {
-  .page-guide .guide-service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 16px 28px #2373ca26;
-  }
-  .page-guide .guide-service-card:hover .top-link::after {
-    transform: scaleX(1);
-  }
-}
+
 @media (min-width: 768px) and (max-width: 1199px) {
   .page-guide .guide-concern-grid li {
     grid-template-columns: 80px minmax(0, 1fr);
@@ -697,21 +537,6 @@
   .page-guide .guide-step-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
-  }
-  .page-guide .guide-service-card {
-    padding-inline: 20px;
-    padding: 26px;
-  }
-  .page-guide .guide-service-card h3 {
-    font-size: var(--guide-card-title);
-    line-height: 1.6;
-    min-height: 3.2em;
-    letter-spacing: 0;
-  }
-  .page-guide .guide-service-card p {
-    font-size: var(--guide-body);
-    white-space: normal;
-    min-height: 3.7em;
   }
 }
 @media (max-width: 767px) {
@@ -753,26 +578,7 @@
     padding-inline: 20px;
     padding: 13px 28px;
   }
-  .page-guide .guide-hero {
-    padding: 22px 0 64px;
-    min-height: 0;
-    background-size: auto 100%;
-  }
-  .page-guide .guide-hero .breadcrumb {
-    font-size: 13px;
-    margin-bottom: 24px;
-    gap: 8px;
-    margin: 0 0 28px;
-  }
-  .page-guide .guide-eyebrow {
-    position: static;
-    font-size: 14px;
-    margin-bottom: 20px;
-  }
-  .page-guide .guide-hero h1 {
-    font-size: clamp(22px, 6.4vw, 28px);
-    line-height: 1.65;
-  }
+
   .page-guide .guide-mobile-break {
     display: initial;
   }
@@ -782,14 +588,7 @@
   .page-guide .guide-title-question {
     white-space: nowrap;
   }
-  .page-guide .guide-main .guide-lead {
-    font-size: var(--guide-body);
-    text-align: center;
-    line-height: 1.85;
-    font-weight: 500;
-    max-width: 1000px;
-    margin-inline: auto;
-  }
+
   .page-guide .guide-desktop-break {
     display: none;
   }
@@ -912,36 +711,6 @@
     font-size: var(--guide-body);
     line-height: 1.9;
     font-weight: 500;
-  }
-  .page-guide .guide-service-card {
-    padding: 26px;
-  }
-  .page-guide .guide-service-card h3,
-  .page-guide .guide-service-card p {
-    min-height: 0;
-  }
-  .page-guide .guide-service-card p {
-    font-size: var(--guide-body);
-    white-space: normal;
-  }
-  .page-guide .guide-contact p {
-    font-size: var(--guide-body);
-  }
-  .page-guide .guide-contact .guide-contact-address {
-    font-size: 14px;
-    line-height: 2;
-  }
-  .page-guide .guide-company {
-    padding: 36px 0;
-  }
-  .page-guide .guide-company .container {
-    flex-direction: column;
-    text-align: center;
-    gap: 16px;
-  }
-  .page-guide .guide-company h2 {
-    font-size: 22px;
-    margin-bottom: 0;
   }
 }
 

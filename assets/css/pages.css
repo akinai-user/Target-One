@@ -1269,11 +1269,21 @@
 .sub-page:not(.page-guide) main .reading-section > .container {
   width: min(860px, calc(100% - 80px));
 }
-.sub-page:not(.page-guide) main .section:not(.reading-section) {
+.sub-page:not(.page-guide)
+  main
+  .section:not(.reading-section, .shared-service, .shared-contact, .shared-invitation) {
   padding-block: var(--page-space);
 }
-.sub-page:not(.page-guide) main .section:not(.reading-section) > .container > h2,
-.sub-page:not(.page-guide) main .section:not(.reading-section) > .container > h2:not(:first-child) {
+.sub-page:not(.page-guide)
+  main
+  .section:not(.reading-section, .shared-service, .shared-contact, .shared-invitation)
+  > .container
+  > h2,
+.sub-page:not(.page-guide)
+  main
+  .section:not(.reading-section, .shared-service, .shared-contact, .shared-invitation)
+  > .container
+  > h2:not(:first-child) {
   font-size: var(--page-heading);
   line-height: 1.45;
   text-align: center;
@@ -1582,7 +1592,14 @@
 }
 .sub-page:not(.page-guide)
   main
-  .section:not(.reading-section, .solution-section, .final-cta)
+  .section:not(
+    .reading-section,
+    .solution-section,
+    .final-cta,
+    .shared-service,
+    .shared-contact,
+    .shared-invitation
+  )
   > .container
   > h2::after {
   content: '';
