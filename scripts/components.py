@@ -2,6 +2,44 @@
 from html import escape
 
 
+def footer():
+    groups = [
+        ('サービス', [
+            ('指定URLターゲティング広告とは', '/guide/'),
+            ('サービス紹介', '/service/'),
+            ('他の広告との違い', '/comparison/'),
+            ('競合ターゲティング広告の選び方', '/how-to-choose/'),
+        ]),
+        ('活用方法・事例', [('業種別の活用方法', '/industry/'), ('導入事例', '/case/')]),
+        ('料金・導入・サポート', [
+            ('料金プラン', '/plan/'), ('導入の流れ', '/flow/'),
+            ('サポート体制', '/support/'), ('よくある質問', '/faq/'),
+        ]),
+        ('お役立ち情報', [
+            ('コラム', '/column/'), ('用語集', '/glossary/'),
+            ('調査レポート', '/data/'), ('お知らせ', '/news/'),
+        ]),
+        ('お問い合わせ・会社情報', [
+            ('資料請求', '/request/'), ('無料相談・お問い合わせ', '/contact/'),
+            ('運営会社', '/company/'), ('ヨコドリについて', '/yokodori/'),
+            ('プライバシーポリシー', '/privacy/'), ('利用規約', '/terms/'),
+            ('特定商取引法に基づく表記', '/tokushoho/'),
+        ]),
+    ]
+    links = ''.join(
+        f'<div class="top-footer-group"><h2>{escape(title)}</h2>'
+        + ''.join(f'<a href="{url}">{escape(label)}</a>' for label, url in items)
+        + '</div>' for title, items in groups)
+    return ('<footer class="top-footer"><div class="top-container">'
+            '<div class="top-footer-grid"><div class="top-footer-about">'
+            '<a href="/" class="top-footer-name" aria-label="Target-One トップ">'
+            '<img src="/assets/images/top/logo.webp" alt="Target-One 指定URLターゲティング広告" '
+            'width="245" height="57" loading="lazy" decoding="async"></a></div>'
+            + links + '</div><div class="top-footer-bottom">'
+            '<p>Target-Oneは、株式会社AKINAIのプロジェクト「ヨコドリ」が提供するサービスです。</p>'
+            '<p>© 2026 AKINAI Inc. All Rights Reserved.</p></div></div></footer>')
+
+
 def buttons(secondary='資料請求', secondary_url='/request/', white=False):
     variant = 'top-button-white' if white else 'top-button-outline'
     return ('<div class="buttons">'

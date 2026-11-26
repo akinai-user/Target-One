@@ -5,12 +5,13 @@ const navigation = document.querySelector('#navigation');
 function setMenuOpen(open) {
   menuButton?.setAttribute('aria-expanded', String(open));
   menuButton?.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
-  const icon = menuButton?.querySelector('span');
-  if (icon) {
-    icon.textContent = open ? '×' : '☰';
-    icon.setAttribute('aria-hidden', 'true');
-  }
   navigation?.classList.toggle('open', open);
+  document.body.classList.toggle('menu-open', open);
+  if (open) updateMenuHeight();
+}
+function updateMenuHeight() {
+  const headerBottom = document.querySelector('.header')?.getBoundingClientRect().bottom || 73;
+  navigation?.style.setProperty('--menu-top', `${headerBottom}px`);
 }
 setMenuOpen(false);
 menuButton?.addEventListener('click', () => {
@@ -18,6 +19,13 @@ menuButton?.addEventListener('click', () => {
   setMenuOpen(open);
 });
 const navGroups = [...document.querySelectorAll('.nav-group')];
+navigation?.addEventListener('click', (event) => {
+  if (event.target.closest('a')) setMenuOpen(false);
+});
+window.addEventListener('resize', () => {
+  if (window.matchMedia('(min-width: 1100px)').matches) setMenuOpen(false);
+  else if (navigation?.classList.contains('open')) updateMenuHeight();
+});
 navGroups.forEach((group) => {
   group.addEventListener('toggle', () => {
     if (group.open)
@@ -33,12 +41,21 @@ navGroups.forEach((group) => {
   });
 });
 document.addEventListener('click', (event) => {
-  if (!event.target.closest('.header')) navGroups.forEach((group) => (group.open = false));
+  if (!event.target.closest('.header')) {
+    navGroups.forEach((group) => (group.open = false));
+    setMenuOpen(false);
+  }
 });
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
+    const menuWasOpen = menuButton?.getAttribute('aria-expanded') === 'true';
+    const activeGroup = navGroups.find(
+      (group) => group.open && group.contains(document.activeElement),
+    );
     navGroups.forEach((group) => (group.open = false));
+    activeGroup?.querySelector('summary')?.focus();
     setMenuOpen(false);
+    if (menuWasOpen) menuButton?.focus();
   }
 });
 const filters = [...document.querySelectorAll('[data-filter]')];

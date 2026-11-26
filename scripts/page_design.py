@@ -45,7 +45,7 @@ class PageDesign:
 
     def chrome(self):
         header = re.search(r'<header\b.*?</header>', self.top, re.S)[0]
-        footer = re.search(r'<footer\b.*?</footer>', self.top, re.S)[0]
+        footer = components.footer()
         mobile = re.search(r'<div class="mobile-cta">.*?</div>', self.top, re.S)[0]
         return ('<a class="skip" href="#main">本文へ移動</a>' + header.replace('href="#contact"', 'href="/contact/"'),
                 (footer + mobile).replace('href="#contact"', 'href="/contact/"'))
