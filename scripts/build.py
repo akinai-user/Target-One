@@ -186,6 +186,8 @@ def writepage(p,body=None):
  body=body if body is not None else home(p) if path=='/' else subhero(p)+''.join(render_section(s,p,i) for i,s in enumerate(p['sections']) if i>0)+design.common()+(cta() if path!='/contact/' else '')+design.company_link()
  if path=='/guide/':
   body=design.guide()
+ elif path=='/service/':
+  body=design.service()
  else:body=design.unify_body(body)
  # Create stable heading anchors for article TOCs.
  if p['number'] in [13,28]:
@@ -198,9 +200,10 @@ def writepage(p,body=None):
  verification=('<meta name="google-site-verification" content="'+esc(site_config.get('searchConsoleVerification',''))+'">') if site_config.get('searchConsoleVerification') else ''
  head=f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)}</title><meta name="description" content="{esc(p['description'])}"><link rel="canonical" href="{url}"><meta property="og:type" content="{'article' if p['number'] in [13,28] else 'website'}"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(p['description'])}"><meta property="og:url" content="{url}"><meta property="og:site_name" content="Target-One"><meta property="og:locale" content="ja_JP"><meta property="og:image" content="https://target-one.net/assets/images/ogp.webp"><meta name="twitter:card" content="summary_large_image">{verification}<meta name="theme-color" content="#102e5a"><link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/css/style.css"><script src="/assets/js/config.js" defer></script><script src="/assets/js/main.js" defer></script><script type="application/ld+json">{json.dumps(schemas,ensure_ascii=False)}</script></head>'''
  head=head.replace('</head>',FONT_HEAD+'</head>')
- if path=='/guide/':head=head.replace('<link rel="stylesheet" href="/assets/css/sub-components.css">','<link rel="stylesheet" href="/assets/css/guide.css"><link rel="stylesheet" href="/assets/css/sub-components.css">')
+ if path in ['/guide/', '/service/']:head=head.replace('<link rel="stylesheet" href="/assets/css/sub-components.css">','<link rel="stylesheet" href="/assets/css/guide.css"><link rel="stylesheet" href="/assets/css/sub-components.css">')
  doc=head+'<body class="top-page sub-page page-'+design.kind(p)+'">'+header+'<main id="main">'+body+'</main>'+footer+'<dialog id="confirm-dialog"><div class="dialog-inner"><button class="dialog-close" aria-label="閉じる">×</button><p class="eyebrow">CONFIRMATION</p><h2>入力内容の確認</h2><p>内容をご確認のうえ、送信してください。</p><dl id="confirm-values"></dl><p class="dialog-error" role="alert"></p><div class="buttons"><button class="button outline edit-form">入力内容を修正</button><button class="button orange send-form">この内容で送信する →</button></div></div></dialog></body></html>'
  if path=='/guide/':doc=doc.replace('page-service">','page-service page-guide">',1).replace('<main id="main">','<main id="main" class="guide-main">',1)
+ if path=='/service/':doc=doc.replace('page-service"','page-service page-service-intro"',1).replace('<main id="main">','<main id="main" class="guide-main service-main">',1).replace('</head>','<link rel="stylesheet" href="/assets/css/service.css"></head>',1)
  dest=R/path.strip('/')/'index.html' if path!='/' else R/'index.html';dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(doc)
 for p in pages:writepage(p)
 for cat,slug in zip(['基礎知識','競合対策','Web広告運用','業種別集客'],['basics','competition','advertising','industry']):

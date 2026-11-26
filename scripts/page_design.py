@@ -141,6 +141,23 @@ class PageDesign:
             source = source.replace(f'<!-- component:{name} -->', block)
         return re.search(r'<main\b[^>]*>(.*?)</main>', source, re.S)[1]
 
+    def service(self):
+        source = (self.root / 'content/service-main.html').read_text()
+        config = {
+            'breadcrumb': '<nav class="breadcrumb" aria-label="パンくずリスト"><a href="/">TOP</a><span aria-hidden="true">›</span><span aria-current="page">サービス紹介</span></nav>',
+            'eyebrow': 'SERVICE',
+            'title': '<span class="service-phrase">Target-Oneの</span><span class="shared-hero-title-accent service-phrase">サービス紹介</span>',
+            'lead': 'Target-Oneは、指定URLに関連する検索・閲覧傾向をもとに、購買意欲の高い層に絞り込んで広告を届けるサービスです。配信後は滞在時間やスクロール率で「質」を評価し、改善を続けます。',
+        }
+        blocks = {
+            'hero': components.hero(**config, actions=components.buttons('詳しく見る ↓', '#section-2', white=True), guide=True),
+            'buttons': components.buttons(),
+            'services': components.services(), 'contact': components.contact(), 'company': components.company(),
+        }
+        for name, block in blocks.items():
+            source = source.replace(f'<!-- component:{name} -->', block)
+        return re.search(r'<main\b[^>]*>(.*?)</main>', source, re.S)[1]
+
     def card_image(self, page, title, index):
         section = page.get('_section', '')
         if page['path'] == '/glossary/':
