@@ -1754,7 +1754,7 @@ dialog::backdrop {
   }
 }
 
-/* Shared footer: wireframe common parts, six columns on PC and two on SP. */
+/* Shared footer: six columns on PC, collapsible groups on SP. */
 .top-footer {
   padding: 64px 0 32px;
   background: #010a20;
@@ -1791,7 +1791,26 @@ dialog::backdrop {
   line-height: 1.8;
   overflow-wrap: anywhere;
 }
-.top-footer-group > a {
+.top-footer .footer-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: default;
+  opacity: 1;
+  -webkit-text-fill-color: currentColor;
+}
+.top-footer-links[hidden] {
+  display: none;
+}
+.top-footer-links > a {
   display: block;
   width: fit-content;
   padding-block: 5px;
@@ -1801,7 +1820,7 @@ dialog::backdrop {
   overflow-wrap: anywhere;
   transition: color 0.2s;
 }
-.top-footer-group > a:hover {
+.top-footer-links > a:hover {
   color: #fff;
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -1830,18 +1849,53 @@ dialog::backdrop {
     width: calc(100% - 40px);
   }
   .top-footer-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 32px 24px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  .top-footer-about {
+    margin-bottom: 24px;
+  }
+  .top-footer-group {
+    border-bottom: 1px solid #ffffff26;
+  }
+  .top-footer-group:nth-child(2) {
+    border-top: 1px solid #ffffff26;
   }
   .top-footer-name {
     width: min(100%, 175px);
   }
   .top-footer .top-footer-group h2 {
-    margin-bottom: 10px;
-    font-size: 13px;
+    margin: 0;
+    font-size: 14px;
   }
-  .top-footer-group > a {
-    padding-block: 7px;
+  .top-footer .footer-toggle {
+    min-height: 60px;
+    padding: 16px 0;
+  }
+  .top-footer .footer-toggle:not(:disabled) {
+    cursor: pointer;
+  }
+  .top-footer .footer-toggle:not(:disabled)::after {
+    content: '';
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    background:
+      linear-gradient(currentColor, currentColor) center / 14px 1px no-repeat,
+      linear-gradient(currentColor, currentColor) center / 1px 14px no-repeat;
+  }
+  .top-footer .footer-toggle[aria-expanded='true']::after {
+    background-size:
+      14px 1px,
+      1px 0;
+  }
+  .top-footer-links {
+    padding: 0 0 18px 12px;
+  }
+  .top-footer-links > a {
+    min-height: 44px;
+    padding-block: 10px;
+    font-size: 13px;
   }
   .top-footer-bottom {
     flex-direction: column;

@@ -27,9 +27,11 @@ def footer():
         ]),
     ]
     links = ''.join(
-        f'<div class="top-footer-group"><h2>{escape(title)}</h2>'
+        f'<div class="top-footer-group"><h2><button class="footer-toggle" '
+        f'aria-expanded="true" aria-controls="footer-links-{index}" disabled>'
+        f'{escape(title)}</button></h2><div class="top-footer-links" id="footer-links-{index}">'
         + ''.join(f'<a href="{url}">{escape(label)}</a>' for label, url in items)
-        + '</div>' for title, items in groups)
+        + '</div></div>' for index, (title, items) in enumerate(groups, 1))
     return ('<footer class="top-footer"><div class="top-container">'
             '<div class="top-footer-grid"><div class="top-footer-about">'
             '<a href="/" class="top-footer-name" aria-label="Target-One トップ">'

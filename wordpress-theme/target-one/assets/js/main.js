@@ -111,6 +111,28 @@ document.addEventListener('keydown', (event) => {
   );
 })();
 
+// Footer links are always visible on desktop; mobile headings toggle each group.
+(() => {
+  const mobile = window.matchMedia('(max-width: 1099px)');
+  document.querySelectorAll('.footer-toggle').forEach((button) => {
+    const links = document.getElementById(button.getAttribute('aria-controls'));
+    if (!links) return;
+    const sync = () => {
+      button.disabled = !mobile.matches;
+      button.setAttribute('aria-expanded', String(!mobile.matches));
+      if (mobile.matches && links.contains(document.activeElement)) button.focus();
+      links.hidden = mobile.matches;
+    };
+    button.addEventListener('click', () => {
+      if (!mobile.matches) return;
+      links.hidden = !links.hidden;
+      button.setAttribute('aria-expanded', String(!links.hidden));
+    });
+    mobile.addEventListener('change', sync);
+    sync();
+  });
+})();
+
 const filters = [...document.querySelectorAll('[data-filter]')];
 if (filters.length) {
   const cards = [...document.querySelectorAll('.card[data-category]')].filter(
