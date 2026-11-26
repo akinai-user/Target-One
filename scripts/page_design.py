@@ -159,8 +159,14 @@ class PageDesign:
         return re.search(r'<main\b[^>]*>(.*?)</main>', source, re.S)[1]
 
     def feature_url(self):
-        config = json.loads((self.root / 'content/feature-url-hero.json').read_text())
-        source = (self.root / 'content/feature-url-main.html').read_text()
+        return self.feature('url')
+
+    def feature_area(self):
+        return self.feature('area')
+
+    def feature(self, name):
+        config = json.loads((self.root / f'content/feature-{name}-hero.json').read_text())
+        source = (self.root / f'content/feature-{name}-main.html').read_text()
         blocks = {
             'hero': components.hero(**config, guide=True),
             'buttons': components.buttons(),

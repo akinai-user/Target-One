@@ -1,0 +1,6 @@
+{
+  "breadcrumb": "<nav class=\"breadcrumb\" aria-label=\"パンくずリスト\"><a href=\"/\">TOP</a><span aria-hidden=\"true\">›</span><a href=\"/service/\">サービス紹介</a><span aria-hidden=\"true\">›</span><span aria-current=\"page\">エリア・属性指定</span></nav>",
+  "eyebrow": "FEATURES",
+  "title": "<span class=\"area-hero-label guide-phrase\"><span class=\"shared-hero-title-accent\">エリア・属性指定</span><span class=\"area-hero-separator\">：</span></span><span class=\"guide-phrase\">商圏内の</span><span class=\"guide-phrase\">ユーザーだけに届ける</span>",
+  "lead": "<span class=\"guide-phrase\">目安として半径1km単位のイメージで</span><span class=\"guide-phrase\">配信エリアを設計できます。</span><span class=\"guide-phrase\">都道府県・市区町村単位の</span><span class=\"guide-phrase\">指定も可能で、</span><span class=\"guide-phrase\">商圏外への無駄な配信を抑えます。</span>"
+}

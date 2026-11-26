@@ -190,13 +190,15 @@ def writepage(p,body=None):
   body=design.service()
  elif path=='/features/url/':
   body=design.feature_url()
+ elif path=='/features/area/':
+  body=design.feature_area()
  else:body=design.unify_body(body)
  # Create stable heading anchors for article TOCs.
  if p['number'] in [13,28]:
   heads=[x['text'] for s in p['sections'] if s['name']=='本文' for x in s['items'] if x['type']=='見出し']
   for i,h in enumerate(heads):body=body.replace('<h2>'+esc(h)+'</h2>','<h2 id="heading-'+str(i)+'">'+esc(h)+'</h2>')
  schemas=[{'@context':'https://schema.org','@type':'Organization','name':'株式会社AKINAI','url':'https://target-one.net/','telephone':'050-1780-2231'}, {'@context':'https://schema.org','@type':'BreadcrumbList','itemListElement':[{'@type':'ListItem','position':1,'name':'TOP','item':'https://target-one.net/'},{'@type':'ListItem','position':2,'name':p['name'],'item':url}]}]
- if path=='/features/url/':
+ if path in ['/features/url/', '/features/area/']:
   schemas[1]['itemListElement'][1]['position']=3
   schemas[1]['itemListElement'].insert(1,{'@type':'ListItem','position':2,'name':'サービス紹介','item':'https://target-one.net/service/'})
  faqs=[x['text'] for s in p.get('sections',[]) for x in s['items'] if x['type'].startswith('Q&A')]
@@ -205,11 +207,12 @@ def writepage(p,body=None):
  verification=('<meta name="google-site-verification" content="'+esc(site_config.get('searchConsoleVerification',''))+'">') if site_config.get('searchConsoleVerification') else ''
  head=f'''<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{esc(title)}</title><meta name="description" content="{esc(p['description'])}"><link rel="canonical" href="{url}"><meta property="og:type" content="{'article' if p['number'] in [13,28] else 'website'}"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(p['description'])}"><meta property="og:url" content="{url}"><meta property="og:site_name" content="Target-One"><meta property="og:locale" content="ja_JP"><meta property="og:image" content="https://target-one.net/assets/images/ogp.webp"><meta name="twitter:card" content="summary_large_image">{verification}<meta name="theme-color" content="#102e5a"><link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/css/style.css"><script src="/assets/js/config.js" defer></script><script src="/assets/js/main.js" defer></script><script type="application/ld+json">{json.dumps(schemas,ensure_ascii=False)}</script></head>'''
  head=head.replace('</head>',FONT_HEAD+'</head>')
- if path in ['/guide/', '/service/', '/features/url/']:head=head.replace('<link rel="stylesheet" href="/assets/css/sub-components.css">','<link rel="stylesheet" href="/assets/css/guide.css"><link rel="stylesheet" href="/assets/css/sub-components.css">')
+ if path in ['/guide/', '/service/', '/features/url/', '/features/area/']:head=head.replace('<link rel="stylesheet" href="/assets/css/sub-components.css">','<link rel="stylesheet" href="/assets/css/guide.css"><link rel="stylesheet" href="/assets/css/sub-components.css">')
  doc=head+'<body class="top-page sub-page page-'+design.kind(p)+'">'+header+'<main id="main">'+body+'</main>'+footer+'<dialog id="confirm-dialog"><div class="dialog-inner"><button class="dialog-close" aria-label="閉じる">×</button><p class="eyebrow">CONFIRMATION</p><h2>入力内容の確認</h2><p>内容をご確認のうえ、送信してください。</p><dl id="confirm-values"></dl><p class="dialog-error" role="alert"></p><div class="buttons"><button class="button outline edit-form">入力内容を修正</button><button class="button orange send-form">この内容で送信する →</button></div></div></dialog></body></html>'
  if path=='/guide/':doc=doc.replace('page-service">','page-service page-guide">',1).replace('<main id="main">','<main id="main" class="guide-main">',1)
  if path=='/service/':doc=doc.replace('page-service"','page-service page-service-intro"',1).replace('<main id="main">','<main id="main" class="guide-main service-main">',1).replace('</head>','<link rel="stylesheet" href="/assets/css/service.css"></head>',1)
  if path=='/features/url/':doc=doc.replace('page-service"','page-service page-feature-url"',1).replace('<main id="main">','<main id="main" class="guide-main url-main">',1).replace('</head>','<link rel="stylesheet" href="/assets/css/feature-url.css"></head>',1)
+ if path=='/features/area/':doc=doc.replace('page-service"','page-service page-feature-area"',1).replace('<main id="main">','<main id="main" class="guide-main area-main">',1).replace('</head>','<link rel="stylesheet" href="/assets/css/feature-area.css"></head>',1)
  dest=R/path.strip('/')/'index.html' if path!='/' else R/'index.html';dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(doc)
 for p in pages:writepage(p)
 for cat,slug in zip(['基礎知識','競合対策','Web広告運用','業種別集客'],['basics','competition','advertising','industry']):

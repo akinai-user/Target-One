@@ -79,6 +79,8 @@ python3 scripts/check.py
 
 共通スタイルは `assets/css/style.css`、共通操作は `assets/js/main.js` です。 下層ページの共通デザインは `assets/css/pages.css`、共通アニメーションは `assets/css/top-motion.css` と `assets/js/top-motion.js` です。`/guide/` の本文は `content/guide-main.html`、ヒーローの文言・改行は `content/guide-hero.json`、固有スタイルは `assets/css/guide.css` で管理します。ヒーロー・サービス案内・無料相談・運営会社への案内は `scripts/components.py` と `assets/css/sub-components.css` に共通化し、guide本文の `component:*` マーカーも同じ部品で置き換えます。サービス紹介 `/service/` の本文は `content/service-main.html`、固有レイアウトは `assets/css/service.css` で管理し、カード・FAQ・文字組みは `guide.css` を共有します。URL指定 `/features/url/` の本文は `content/feature-url-main.html`、ヒーローは `content/feature-url-hero.json`、表・背景の固有スタイルは `assets/css/feature-url.css` で管理します。ボタン・リンク・濃紺の背景はTOPの共通クラスを使用します。ソース編集後の再梱包は `python3 scripts/package_delivery.py` で行えます。静的HTMLに直接加えた修正は、再生成時に上書きされるため、継続編集はJSONと生成スクリプト側へ反映してください。
 
+`/features/area/` の本文は `content/feature-area-main.html`、ヒーローの文言・改行は `content/feature-area-hero.json`、エリア指定表・背景装飾の固有スタイルは `assets/css/feature-area.css` で管理します。文字組みは `guide.css`、ヒーローと下部の案内は `/guide/` と同じ共通パーツを使用します。
+
 ## 確認済み・未確認事項
 
 - 59ページについて、内部リンク・画像・CSS/JS参照・ページ内アンカー・h1が1つであること・title/description・JSON-LD構文を検査済み。
