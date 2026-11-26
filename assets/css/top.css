@@ -1858,7 +1858,8 @@
   backdrop-filter: blur(16px);
   transition:
     background-color 0.3s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease,
+    transform 0.25s ease;
 }
 .top-page .top-header:has(.nav-group[open]) {
   background: #fafafa;

@@ -493,6 +493,40 @@
     font-size: clamp(34px, 11.7vw, 44px);
   }
 }
+/* Pin the backdrop while the document scroll reveals each statement in order. */
+.top-statement.top-statement-scroll {
+  padding: 0;
+  height: calc(var(--statement-height) + var(--statement-distance));
+  overflow: visible;
+  background: none;
+}
+.top-statement-scroll::before,
+.top-statement-scroll::after {
+  content: none;
+}
+.top-statement-scroll .top-statement-stage {
+  position: sticky;
+  top: var(--statement-offset);
+  height: var(--statement-height);
+  display: grid;
+  align-items: center;
+  padding: calc(32px + var(--statement-header)) 0 96px;
+}
+.top-statement-scroll .top-container {
+  gap: clamp(16px, 3vh, 30px);
+}
+.top-statement-scroll .top-container > * {
+  opacity: var(--statement-opacity, 0);
+  transform: translateY(var(--statement-shift, 18px));
+}
+.top-statement-scroll p {
+  font-size: clamp(16px, 2.1vw, 28px);
+  line-height: 1.7;
+}
+.top-page .top-statement-scroll h2 {
+  font-size: clamp(24px, 3.2vw, 42px);
+  line-height: 1.5;
+}
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

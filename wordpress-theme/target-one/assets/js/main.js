@@ -58,6 +58,59 @@ document.addEventListener('keydown', (event) => {
     if (menuWasOpen) menuButton?.focus();
   }
 });
+// Keep the header available when scrolling back or using its navigation.
+(() => {
+  const header = document.querySelector('.header');
+  if (!header) return;
+  const scrollPosition = () =>
+    Math.max(
+      0,
+      Math.min(window.scrollY, document.documentElement.scrollHeight - window.innerHeight),
+    );
+  let previous = scrollPosition();
+  let travel = 0;
+  let frame = 0;
+  const update = () => {
+    frame = 0;
+    const position = scrollPosition();
+    const delta = position - previous;
+    previous = position;
+    const interacting =
+      menuButton?.getAttribute('aria-expanded') === 'true' ||
+      navGroups.some((group) => group.open) ||
+      header.querySelector(':focus-visible');
+    if (position <= header.offsetHeight + 24 || interacting) {
+      header.classList.remove('header-hidden');
+      travel = 0;
+      return;
+    }
+    if (!delta) return;
+    travel = Math.sign(delta) === Math.sign(travel) ? travel + delta : delta;
+    if (travel >= 16) header.classList.add('header-hidden');
+    else if (travel <= -8) header.classList.remove('header-hidden');
+  };
+  const reset = () => {
+    header.classList.remove('header-hidden');
+    previous = scrollPosition();
+    travel = 0;
+  };
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    },
+    { passive: true },
+  );
+  window.addEventListener('resize', reset);
+  window.addEventListener('pageshow', reset);
+  header.addEventListener('focusin', reset);
+  navGroups.forEach((group) =>
+    group.addEventListener('toggle', () => {
+      if (group.open) reset();
+    }),
+  );
+})();
+
 const filters = [...document.querySelectorAll('[data-filter]')];
 if (filters.length) {
   const cards = [...document.querySelectorAll('.card[data-category]')].filter(

@@ -2,7 +2,66 @@
 
 (() => {
   const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const setupStatement = () => {
+    const section = document.querySelector('.top-statement');
+    const stage = section?.querySelector('.top-statement-stage');
+    const content = stage?.querySelector('.top-container');
+    if (!content) return;
+
+    const lines = [...content.children];
+    const header = document.querySelector('.header');
+    let scheduled = 0;
+    let distance = 0;
+    let offset = 0;
+
+    const render = () => {
+      scheduled = 0;
+      if (!section.classList.contains('top-statement-scroll')) return;
+      const progress = Math.max(
+        0,
+        Math.min(1, (offset - section.getBoundingClientRect().top) / distance),
+      );
+      lines.forEach((line, index) => {
+        // Leave a short pause after each reveal, and after the final sentence.
+        const reveal = Math.max(0, Math.min(1, progress * (lines.length + 0.5) - index));
+        line.style.setProperty('--statement-opacity', String(reveal));
+        line.style.setProperty('--statement-shift', `${(1 - reveal) * 18}px`);
+      });
+    };
+    const schedule = () => {
+      if (!scheduled) scheduled = requestAnimationFrame(render);
+    };
+    const measure = () => {
+      const headerHeight = header?.getBoundingClientRect().height || 0;
+      offset = 0;
+      const available = window.innerHeight;
+      section.classList.toggle('top-statement-scroll', !preference.matches && available >= 420);
+      const enabled = section.classList.contains('top-statement-scroll');
+      stage.classList.toggle('top-dark', enabled);
+      if (!enabled) return;
+      // Reserve space for the shared header and the mobile controls below the copy.
+      section.style.setProperty('--statement-offset', `${offset}px`);
+      section.style.setProperty('--statement-header', `${headerHeight}px`);
+      section.style.setProperty('--statement-height', `${available}px`);
+      if (content.scrollHeight + headerHeight + 128 > available) {
+        section.classList.remove('top-statement-scroll');
+        stage.classList.remove('top-dark');
+        return;
+      }
+      distance = Math.round(Math.max(240, available * 0.55) * (lines.length + 0.5));
+      section.style.setProperty('--statement-distance', `${distance}px`);
+      render();
+    };
+
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', measure);
+    window.addEventListener('pageshow', measure);
+    preference.addEventListener('change', measure);
+    document.fonts?.ready.then(measure);
+    measure();
+  };
   const startMotion = () => {
+    setupStatement();
     if (!('IntersectionObserver' in window)) return;
 
     const pending = new Set();
@@ -36,9 +95,8 @@
           [
             '.top-hero-copy',
             '.top-hero-visual',
-            'body:not(.sub-page) main > section:not(.top-hero) h2',
+            'body:not(.sub-page) main > section:not(.top-hero, .top-statement) h2',
             'main > section .top-eyebrow',
-            '.top-statement p',
             '.top-metric',
             '.top-solution-list > li',
             '.top-concern-grid > li',
