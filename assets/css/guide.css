@@ -339,6 +339,30 @@
 .page-guide .guide-cases h2 {
   margin-bottom: 8px;
 }
+.page-guide .guide-cases .top-link {
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  min-height: 56px;
+  padding: 12px 28px;
+  border: 2px solid var(--top-blue);
+  border-radius: 100px;
+  background: #fff;
+  box-shadow: 0 4px 12px #064bff12;
+  transition:
+    transform 0.4s var(--motion-ease),
+    box-shadow 0.4s ease;
+}
+.page-guide .guide-cases .top-link::after {
+  content: none;
+}
+.page-guide .guide-cases .top-link:hover {
+  box-shadow: 0 6px 16px #064bff20;
+}
+.page-guide .guide-cases .top-link:focus-visible {
+  outline: 3px solid #329dff;
+  outline-offset: 4px;
+}
 .page-guide .guide-case-lead {
   font-size: var(--guide-body);
   font-weight: 500;

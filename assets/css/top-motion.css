@@ -377,6 +377,71 @@
   transform: none;
 }
 
+/* Content controls: a colour wash grows from the upper-left corner. */
+.top-page main :is(.top-button, .button, a.top-link, a.text-link) {
+  position: relative;
+  isolation: isolate;
+  --control-wash: #dceaff;
+  transition:
+    transform 0.4s var(--motion-ease),
+    box-shadow 0.4s ease,
+    filter 0.4s ease;
+}
+.top-page main :is(.top-button-orange, .button.orange) {
+  --control-wash: #d94708;
+}
+.top-page main :is(.top-button, .button, a.top-link, a.text-link)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--control-wash);
+  clip-path: circle(0% at 0 0);
+  pointer-events: none;
+  transition: clip-path 0.55s var(--motion-ease);
+}
+.top-page main :is(a.top-link, a.text-link):not(.guide-cases .top-link)::before {
+  inset: -5px -8px;
+  border-radius: 6px;
+}
+.top-page main .shared-company .top-link::before {
+  content: none;
+}
+.top-page main :is(.top-button, .button, a.top-link, a.text-link):focus-visible::before {
+  clip-path: circle(150% at 0 0);
+}
+.top-page main :is(.top-link, .top-card-link) > b {
+  display: inline-block;
+  transition: transform 0.35s var(--motion-ease);
+}
+@media (hover: hover) and (pointer: fine) {
+  .top-page main :is(.top-button, .button, a.top-link, a.text-link):not(:disabled):hover::before {
+    clip-path: circle(150% at 0 0);
+  }
+  .top-page main :is(.top-button, .button):not(:disabled):hover {
+    transform: translateY(-4px);
+    filter: none;
+    box-shadow: 0 12px 26px #001a5229;
+  }
+  .top-page main :is(.top-button, a.top-link, a.text-link):hover > :is(span, b) {
+    transform: translateX(7px);
+  }
+  .top-page main :is(a.top-link, a.text-link):hover {
+    transform: translateY(-2px);
+  }
+  .top-page
+    main
+    :is(a.card, .top-industry-card, .shared-service-card):hover
+    :is(.top-link, .top-card-link)
+    > :is(span, b) {
+    transform: translateX(7px);
+  }
+}
+.top-page main :is(.top-button, .button, a.top-link, a.text-link):active {
+  transform: translateY(0);
+}
+
 /* A quiet logo introduction, followed by the first-view entrance. */
 .top-loader {
   position: fixed;
@@ -441,5 +506,9 @@
   .top-reveal-pending {
     opacity: 1;
     translate: none;
+  }
+  .top-page main :is(.top-button, .button, a.top-link, a.text-link),
+  .top-page main :is(.top-button, .top-link, .top-card-link, .text-link) > :is(span, b) {
+    transform: none !important;
   }
 }
