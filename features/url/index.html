@@ -50,6 +50,12 @@
             {
               "@type": "ListItem",
               "position": 2,
+              "name": "サービス紹介",
+              "item": "https://target-one.net/service/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
               "name": "URL指定",
               "item": "https://target-one.net/features/url/"
             }
@@ -66,10 +72,12 @@
     <link rel="stylesheet" href="/assets/css/top.css" />
     <link rel="stylesheet" href="/assets/css/pages.css" />
     <link rel="stylesheet" href="/assets/css/top-motion.css" />
+    <link rel="stylesheet" href="/assets/css/guide.css" />
     <link rel="stylesheet" href="/assets/css/sub-components.css" />
     <script src="/assets/js/top-motion.js" defer></script>
+    <link rel="stylesheet" href="/assets/css/feature-url.css" />
   </head>
-  <body class="top-page sub-page page-service">
+  <body class="top-page sub-page page-service page-feature-url">
     <a class="skip" href="#main">本文へ移動</a>
     <header class="header top-header">
       <div class="header-inner">
@@ -142,34 +150,57 @@
         </div>
       </div>
     </header>
-    <main id="main">
-      <section class="shared-hero top-dark page-hero" aria-labelledby="page-title">
+    <main id="main" class="guide-main url-main">
+      <section class="shared-hero top-dark guide-hero guide-blue" aria-labelledby="guide-title">
         <div class="container">
           <nav class="breadcrumb" aria-label="パンくずリスト">
-            <a class="" href="/">TOP</a><span>›</span><span aria-current="page">URL指定</span>
+            <a href="/">TOP</a><span aria-hidden="true">›</span><a href="/service/">サービス紹介</a
+            ><span aria-hidden="true">›</span><span aria-current="page">URL指定</span>
           </nav>
           <p class="shared-hero-eyebrow">FEATURES</p>
-          <div class="shared-hero-copy page-hero-copy">
-            <h1 id="page-title">
-              <span class="shared-hero-title-accent"
-                >URL指定：競合サイトや比較ページの閲覧者に配信</span
-              >
+          <div class="shared-hero-copy guide-hero-copy">
+            <h1 id="guide-title">
+              <span class="url-hero-label guide-phrase"
+                ><span class="shared-hero-title-accent">URL指定</span
+                ><span class="url-hero-separator">：</span></span
+              ><span class="guide-phrase">競合サイトや</span
+              ><span class="guide-phrase">比較ページの</span
+              ><span class="guide-phrase">閲覧者に配信</span>
             </h1>
             <p class="shared-hero-lead">
-              競合HPの特定ページ、比較記事、価格・店舗情報ページなどを指定できます。ドメイン単位だけでなく、2階層目以降の特定ページまで絞り込めます。
+              <span class="guide-phrase">競合HPの特定ページ、</span
+              ><span class="guide-phrase">比較記事、</span
+              ><span class="guide-phrase">価格・店舗情報ページなどを</span
+              ><span class="guide-phrase">指定できます。</span
+              ><span class="guide-phrase">ドメイン単位だけでなく、</span
+              ><span class="guide-phrase">2階層目以降の</span
+              ><span class="guide-phrase">特定ページまで絞り込めます。</span>
             </p>
           </div>
         </div>
       </section>
       <section
-        class="section wire-section"
+        class="section url-table-section url-examples"
         id="section-1"
-        data-wire-section="表：指定できるURLの例"
+        aria-labelledby="url-examples-title"
       >
         <div class="container">
-          <h2>指定できるURLの例</h2>
-          <div class="table-scroll" tabindex="0" role="region" aria-label="比較・詳細表">
-            <table>
+          <h2 id="url-examples-title">
+            <span class="guide-phrase">指定できる</span><span class="guide-phrase">URLの例</span>
+          </h2>
+          <p class="url-scroll-hint">表は横にスクロールできます →</p>
+          <div
+            class="url-table-wrap"
+            tabindex="0"
+            role="region"
+            aria-labelledby="url-examples-title"
+          >
+            <table class="url-table url-examples-table">
+              <colgroup>
+                <col class="url-kind-col" />
+                <col class="url-example-col" />
+                <col class="url-audience-col" />
+              </colgroup>
               <thead>
                 <tr>
                   <th scope="col">種類</th>
@@ -179,24 +210,58 @@
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">競合のサービスページ</th>
-                  <td>競合の料金ページ、サービス紹介ページ</td>
-                  <td>競合を具体的に検討している人</td>
+                  <th scope="row">
+                    <span class="guide-phrase">競合の</span
+                    ><span class="guide-phrase">サービスページ</span>
+                  </th>
+                  <td>
+                    <span class="guide-phrase">競合の料金ページ、</span
+                    ><span class="guide-phrase">サービス紹介ページ</span>
+                  </td>
+                  <td>
+                    <span class="guide-phrase">競合を具体的に</span
+                    ><span class="guide-phrase">検討している人</span>
+                  </td>
                 </tr>
                 <tr>
-                  <th scope="row">比較・口コミサイト</th>
-                  <td>比較サイトや口コミサイトの該当ページ</td>
-                  <td>複数の会社を見比べている人</td>
+                  <th scope="row">
+                    <span class="guide-phrase">比較・</span
+                    ><span class="guide-phrase">口コミサイト</span>
+                  </th>
+                  <td>
+                    <span class="guide-phrase">比較サイトや</span
+                    ><span class="guide-phrase">口コミサイトの</span
+                    ><span class="guide-phrase">該当ページ</span>
+                  </td>
+                  <td>
+                    <span class="guide-phrase">複数の会社を</span
+                    ><span class="guide-phrase">見比べている人</span>
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">業界メディア</th>
-                  <td>業界ニュースや関連記事</td>
-                  <td>課題を感じて情報を集めている人</td>
+                  <td>
+                    <span class="guide-phrase">業界ニュースや</span
+                    ><span class="guide-phrase">関連記事</span>
+                  </td>
+                  <td>
+                    <span class="guide-phrase">課題を感じて</span
+                    ><span class="guide-phrase">情報を集めている人</span>
+                  </td>
                 </tr>
                 <tr>
-                  <th scope="row">店舗・物件情報</th>
-                  <td>競合店舗のページ、物件の詳細ページ</td>
-                  <td>近くで店舗や物件を探している人</td>
+                  <th scope="row">
+                    <span class="guide-phrase">店舗・</span
+                    ><span class="guide-phrase">物件情報</span>
+                  </th>
+                  <td>
+                    <span class="guide-phrase">競合店舗のページ、</span
+                    ><span class="guide-phrase">物件の詳細ページ</span>
+                  </td>
+                  <td>
+                    <span class="guide-phrase">近くで店舗や物件を</span
+                    ><span class="guide-phrase">探している人</span>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -204,44 +269,70 @@
         </div>
       </section>
       <section
-        class="section wire-section navy solution-section top-dark"
+        class="section guide-statement guide-blue top-dark url-statement"
         id="section-2"
-        data-wire-section="解決策（一言で言い切る）"
+        aria-labelledby="url-intent-title"
       >
         <div class="container">
-          <h2>意図の強さで絞り込む</h2>
-          <p class="">
-            同じ競合サイトでも、トップページを見た人と料金ページを見た人では、検討の深さが違います。閲覧したページの種類から意図の強さを判断し、見込みの高い層を優先して配信できます。
+          <h2 id="url-intent-title">
+            <span class="guide-phrase">意図の強さで</span><span class="guide-phrase">絞り込む</span>
+          </h2>
+          <p>
+            <span class="guide-phrase">同じ競合サイトでも、</span
+            ><span class="guide-phrase">トップページを見た人と</span
+            ><span class="guide-phrase">料金ページを見た人では、</span
+            ><span class="guide-phrase">検討の深さが違います。</span>
+          </p>
+          <p>
+            <span class="guide-phrase">閲覧したページの種類から</span
+            ><span class="guide-phrase">意図の強さを判断し、</span
+            ><span class="guide-phrase">見込みの高い層を</span
+            ><span class="guide-phrase">優先して配信できます。</span>
           </p>
         </div>
       </section>
       <section
-        class="section wire-section"
+        class="section url-table-section url-plans"
         id="section-3"
-        data-wire-section="表：プランごとの指定数"
+        aria-labelledby="url-plans-title"
       >
         <div class="container">
-          <h2>プランごとの指定数</h2>
-          <div class="table-scroll" tabindex="0" role="region" aria-label="比較・詳細表">
-            <table>
+          <h2 id="url-plans-title">
+            <span class="guide-phrase">プランごとの</span><span class="guide-phrase">指定数</span>
+          </h2>
+          <div class="url-table-wrap" tabindex="0" role="region" aria-labelledby="url-plans-title">
+            <table class="url-table url-plan-table">
+              <colgroup>
+                <col class="url-plan-col" />
+                <col />
+              </colgroup>
               <thead>
                 <tr>
                   <th scope="col">プラン</th>
-                  <th scope="col">指定できるURLの数</th>
+                  <th scope="col">
+                    <span class="guide-phrase">指定できる</span
+                    ><span class="guide-phrase">URLの数</span>
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <th scope="row">ライト</th>
-                  <td>最大10個</td>
+                  <td>
+                    <span class="url-quantity">最大 <strong>10</strong> 個</span>
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">スタンダード</th>
-                  <td>最大50個</td>
+                  <td>
+                    <span class="url-quantity">最大 <strong>50</strong> 個</span>
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">伴走強化</th>
-                  <td>最大100個</td>
+                  <td>
+                    <span class="url-quantity">最大 <strong>100</strong> 個</span>
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">おまかせ代行</th>
@@ -256,18 +347,24 @@
           </div>
         </div>
       </section>
-      <section
-        class="section wire-section final-cta wire-final-cta shared-invitation"
-        id="section-4"
-        data-wire-section="最終CTA（ハードルを下げる一言）"
-      >
+      <section class="section guide-invitation guide-light shared-invitation" id="section-4">
         <div class="container">
-          <h2>まずは、競合の状況を一緒に見てみませんか</h2>
-          <p class="">
-            無料相談では、御社の商圏と競合サイトをもとに、指定するURLの候補をお出しします。相談だけで終わっても構いません。
+          <h2>
+            <span class="guide-phrase">まずは、</span><span class="guide-phrase">競合の状況を</span
+            ><span class="guide-phrase">一緒に見てみませんか</span>
+          </h2>
+          <p>
+            <span class="guide-phrase">無料相談では、</span
+            ><span class="guide-phrase">御社の商圏と競合サイトをもとに、</span
+            ><span class="guide-phrase">指定するURLの候補を</span
+            ><span class="guide-phrase">お出しします。</span
+            ><span class="guide-phrase">相談だけで終わっても</span
+            ><span class="guide-phrase">構いません。</span>
           </p>
-          <a class="top-button top-button-orange" href="/contact/">無料相談を申し込む</a
-          ><a class="top-button top-button-outline" href="/request/">資料請求</a>
+          <div class="buttons">
+            <a class="top-button top-button-orange" href="/contact/">無料相談を申し込む</a
+            ><a class="top-button top-button-outline" href="/request/">資料請求</a>
+          </div>
         </div>
       </section>
       <section class="section shared-service">

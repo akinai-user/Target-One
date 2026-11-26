@@ -1,0 +1,6 @@
+{
+  "breadcrumb": "<nav class=\"breadcrumb\" aria-label=\"パンくずリスト\"><a href=\"/\">TOP</a><span aria-hidden=\"true\">›</span><a href=\"/service/\">サービス紹介</a><span aria-hidden=\"true\">›</span><span aria-current=\"page\">URL指定</span></nav>",
+  "eyebrow": "FEATURES",
+  "title": "<span class=\"url-hero-label guide-phrase\"><span class=\"shared-hero-title-accent\">URL指定</span><span class=\"url-hero-separator\">：</span></span><span class=\"guide-phrase\">競合サイトや</span><span class=\"guide-phrase\">比較ページの</span><span class=\"guide-phrase\">閲覧者に配信</span>",
+  "lead": "<span class=\"guide-phrase\">競合HPの特定ページ、</span><span class=\"guide-phrase\">比較記事、</span><span class=\"guide-phrase\">価格・店舗情報ページなどを</span><span class=\"guide-phrase\">指定できます。</span><span class=\"guide-phrase\">ドメイン単位だけでなく、</span><span class=\"guide-phrase\">2階層目以降の</span><span class=\"guide-phrase\">特定ページまで絞り込めます。</span>"
+}

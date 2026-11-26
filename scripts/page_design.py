@@ -158,6 +158,18 @@ class PageDesign:
             source = source.replace(f'<!-- component:{name} -->', block)
         return re.search(r'<main\b[^>]*>(.*?)</main>', source, re.S)[1]
 
+    def feature_url(self):
+        config = json.loads((self.root / 'content/feature-url-hero.json').read_text())
+        source = (self.root / 'content/feature-url-main.html').read_text()
+        blocks = {
+            'hero': components.hero(**config, guide=True),
+            'buttons': components.buttons(),
+            'services': components.services(), 'contact': components.contact(), 'company': components.company(),
+        }
+        for name, block in blocks.items():
+            source = source.replace(f'<!-- component:{name} -->', block)
+        return re.search(r'<main\b[^>]*>(.*?)</main>', source, re.S)[1]
+
     def card_image(self, page, title, index):
         section = page.get('_section', '')
         if page['path'] == '/glossary/':
