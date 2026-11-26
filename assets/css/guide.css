@@ -88,16 +88,21 @@
 
 :is(.page-guide, .page-service-intro, .page-feature-url) .guide-title-accent {
   display: inline;
-  color: #58e4f8;
-  background: linear-gradient(#c5f6fa 12%, #16d2f0 83%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   font-size: 1.14em;
   font-style: italic;
   padding: 0.1em 0.13em;
   margin: -0.1em -0.13em;
   letter-spacing: -0.04em;
+}
+/* WebKit does not clip a parent's text background into inline-block children.
+   Paint the gradient on each phrase as well, preserving its line-break behavior. */
+:is(.page-guide, .page-service-intro, .page-feature-url) .guide-title-accent,
+:is(.page-guide, .page-service-intro, .page-feature-url) .guide-title-accent .guide-phrase {
+  color: #58e4f8;
+  background: linear-gradient(#c5f6fa 12%, #16d2f0 83%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 :is(.page-guide, .page-service-intro, .page-feature-url) .guide-title-question {
   font-size: 0.95em;
